@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbtenderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="codeCategory" />
+    </Key>
+    <Property Name="codeCategory" Type="int" Nullable="false" />
+    <Property Name="nameCategory" Type="nchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Contestants">
+    <Key>
+      <PropertyRef Name="numCon" />
+    </Key>
+    <Property Name="numCon" Type="int" Nullable="false" />
+    <Property Name="userNameCont" Type="nchar" MaxLength="10" />
+    <Property Name="passCont" Type="int" />
+    <Property Name="nameCont" Type="nchar" MaxLength="10" />
+    <Property Name="familyCont" Type="nchar" MaxLength="10" />
+    <Property Name="nameCompanyCont" Type="nchar" MaxLength="10" />
+    <Property Name="Seniority" Type="int" />
+    <Property Name="codeCategory" Type="int" />
+    <Property Name="addressCont" Type="nchar" MaxLength="20" />
+    <Property Name="phoneCont" Type="int" />
+    <Property Name="tellOfiiceCont" Type="int" />
+    <Property Name="emailCont" Type="nchar" MaxLength="20" />
+    <Property Name="area" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="ConToTender">
+    <Key>
+      <PropertyRef Name="numConToTender" />
+    </Key>
+    <Property Name="numConToTender" Type="int" Nullable="false" />
+    <Property Name="numCon" Type="int" />
+    <Property Name="numTender" Type="int" />
+  </EntityType>
+  <EntityType Name="Editors">
+    <Key>
+      <PropertyRef Name="numEditor" />
+    </Key>
+    <Property Name="numEditor" Type="int" Nullable="false" />
+    <Property Name="passEditor" Type="int" />
+    <Property Name="nameEditor" Type="nchar" MaxLength="10" />
+    <Property Name="familyEditor" Type="nchar" MaxLength="10" />
+    <Property Name="addressEditor" Type="nchar" MaxLength="20" />
+    <Property Name="emailEditor" Type="nchar" MaxLength="20" />
+    <Property Name="phoneEditor" Type="int" />
+    <Property Name="tellOfiicEditor" Type="int" />
+  </EntityType>
+  <EntityType Name="ProducToTender">
+    <Key>
+      <PropertyRef Name="numProduct" />
+    </Key>
+    <Property Name="numProduct" Type="int" Nullable="false" />
+    <Property Name="numTender" Type="int" />
+    <Property Name="NameProduct" Type="nchar" MaxLength="10" />
+    <Property Name="Amount" Type="int" />
+  </EntityType>
+  <EntityType Name="Suggestions ">
+    <Key>
+      <PropertyRef Name="numSuggestion " />
+    </Key>
+    <Property Name="numSuggestion " Type="int" Nullable="false" />
+    <Property Name="numCont" Type="int" />
+    <Property Name="priceToproduct" Type="int" />
+    <Property Name="dataSuggestion" Type="datetime" />
+    <Property Name="timeSuggestion" Type="time" Precision="7" />
+    <Property Name="percentOff" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Tenders">
+    <Key>
+      <PropertyRef Name="numTender" />
+    </Key>
+    <Property Name="numTender" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="10" />
+    <Property Name="numType" Type="int" />
+    <Property Name="numEditor" Type="int" />
+    <Property Name="codCategory" Type="int" />
+    <Property Name="typeAcquire" Type="nchar" MaxLength="10" />
+    <Property Name="status" Type="nchar" MaxLength="10" />
+    <Property Name="from" Type="datetime" />
+    <Property Name="till" Type="datetime" />
+    <Property Name="sizeRoomy" Type="int" />
+    <Property Name="sizeMax/Min" Type="int" />
+    <Property Name="hourStart" Type="time" Precision="7" />
+    <Property Name="hourFinish" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="TypeTender">
+    <Key>
+      <PropertyRef Name="numType" />
+    </Key>
+    <Property Name="numType" Type="int" Nullable="false" />
+    <Property Name="nameType" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="DbtenderModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contestants" EntityType="Self.Contestants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConToTender" EntityType="Self.ConToTender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Editors" EntityType="Self.Editors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProducToTender" EntityType="Self.ProducToTender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Suggestions " EntityType="Self.Suggestions " Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tenders" EntityType="Self.Tenders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeTender" EntityType="Self.TypeTender" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

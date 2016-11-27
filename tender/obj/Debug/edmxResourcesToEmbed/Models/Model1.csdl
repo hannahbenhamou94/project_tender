@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbtenderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="codeCategory" />
+    </Key>
+    <Property Name="codeCategory" Type="Int32" Nullable="false" />
+    <Property Name="nameCategory" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Contestants">
+    <Key>
+      <PropertyRef Name="numCon" />
+    </Key>
+    <Property Name="numCon" Type="Int32" Nullable="false" />
+    <Property Name="userNameCont" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="passCont" Type="Int32" />
+    <Property Name="nameCont" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="familyCont" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="nameCompanyCont" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Seniority" Type="Int32" />
+    <Property Name="codeCategory" Type="Int32" />
+    <Property Name="addressCont" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="phoneCont" Type="Int32" />
+    <Property Name="tellOfiiceCont" Type="Int32" />
+    <Property Name="emailCont" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="area" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ConToTender">
+    <Key>
+      <PropertyRef Name="numConToTender" />
+    </Key>
+    <Property Name="numConToTender" Type="Int32" Nullable="false" />
+    <Property Name="numCon" Type="Int32" />
+    <Property Name="numTender" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Editors">
+    <Key>
+      <PropertyRef Name="numEditor" />
+    </Key>
+    <Property Name="numEditor" Type="Int32" Nullable="false" />
+    <Property Name="passEditor" Type="Int32" />
+    <Property Name="nameEditor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="familyEditor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="addressEditor" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="emailEditor" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="phoneEditor" Type="Int32" />
+    <Property Name="tellOfiicEditor" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TypeTender">
+    <Key>
+      <PropertyRef Name="numType" />
+    </Key>
+    <Property Name="numType" Type="Int32" Nullable="false" />
+    <Property Name="nameType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="DbtenderEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Categories" />
+    <EntitySet Name="Contestants" EntityType="Self.Contestants" />
+    <EntitySet Name="ConToTender" EntityType="Self.ConToTender" />
+    <EntitySet Name="Editors" EntityType="Self.Editors" />
+    <EntitySet Name="TypeTender" EntityType="Self.TypeTender" />
+    <EntitySet Name="SuggestionDetail" EntityType="DbtenderModel.SuggestionDetail" />
+    <EntitySet Name="SiteMenu" EntityType="DbtenderModel.SiteMenu" />
+    <EntitySet Name="ClientMenu" EntityType="DbtenderModel.ClientMenu" />
+    <EntitySet Name="Suggestions" EntityType="DbtenderModel.Suggestions" />
+    <FunctionImport Name="ss" ReturnType="Collection(DbtenderModel.ss_Result)" />
+    <EntitySet Name="ProducToTender" EntityType="DbtenderModel.ProducToTender" />
+    <EntitySet Name="Tenders" EntityType="DbtenderModel.Tenders" />
+  </EntityContainer>
+  <EntityType Name="SuggestionDetail">
+    <Key>
+      <PropertyRef Name="numDetailSuggestion" />
+    </Key>
+    <Property Name="numDetailSuggestion" Type="Int32" Nullable="false" />
+    <Property Name="numsuggest" Type="Int32" />
+    <Property Name="numproduct" Type="Int32" />
+    <Property Name="priceToProduct" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SiteMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Suggestions">
+    <Key>
+      <PropertyRef Name="numSuggestion" />
+    </Key>
+    <Property Name="numSuggestion" Type="Int32" Nullable="false" />
+    <Property Name="numTender" Type="Int32" Nullable="false" />
+    <Property Name="numCont" Type="Int32" />
+    <Property Name="priceToproduct" Type="Int32" />
+    <Property Name="dataSuggestion" Type="DateTime" Precision="3" />
+    <Property Name="timeSuggestion" Type="Time" Precision="7" />
+    <Property Name="percentOff" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="ss_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="numEditor" Nullable="true" />
+    <Property Type="String" Name="nameCategory" Nullable="true" MaxLength="20" />
+    <Property Type="Time" Name="timeSuggestion" Nullable="true" />
+    <Property Type="String" Name="NameProduct" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="nameCompanyCont" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="phoneCont" Nullable="true" />
+    <Property Type="Int32" Name="priceToProduct" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="ProducToTender">
+    <Key>
+      <PropertyRef Name="TenderDetailsID" />
+    </Key>
+    <Property Name="TenderDetailsID" Type="Int32" Nullable="false" />
+    <Property Name="numProduct" Type="Int32" Nullable="false" />
+    <Property Name="numTender" Type="Int32" Nullable="false" />
+    <Property Name="NameProduct" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="PriceLimit" Type="Double" />
+    <Property Name="sizeRoomy" Type="Double" />
+  </EntityType>
+  <EntityType Name="Tenders">
+    <Key>
+      <PropertyRef Name="numTender" />
+    </Key>
+    <Property Name="numTender" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="numType" Type="Int32" />
+    <Property Name="numEditor" Type="Int32" />
+    <Property Name="codCategory" Type="Int32" />
+    <Property Name="typeAcquire" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="from" Type="DateTime" Precision="3" />
+    <Property Name="till" Type="DateTime" Precision="3" />
+    <Property Name="hourStart" Type="Time" Precision="7" />
+    <Property Name="hourFinish" Type="Time" Precision="7" />
+  </EntityType>
+</Schema>

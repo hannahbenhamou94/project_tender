@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbtenderModelStoreContainer" CdmEntityContainer="DbtenderEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="DbtenderModel.Categories">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="codeCategory" ColumnName="codeCategory" />
+          <ScalarProperty Name="nameCategory" ColumnName="nameCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contestants">
+      <EntityTypeMapping TypeName="DbtenderModel.Contestants">
+        <MappingFragment StoreEntitySet="Contestants">
+          <ScalarProperty Name="numCon" ColumnName="numCon" />
+          <ScalarProperty Name="userNameCont" ColumnName="userNameCont" />
+          <ScalarProperty Name="passCont" ColumnName="passCont" />
+          <ScalarProperty Name="nameCont" ColumnName="nameCont" />
+          <ScalarProperty Name="familyCont" ColumnName="familyCont" />
+          <ScalarProperty Name="nameCompanyCont" ColumnName="nameCompanyCont" />
+          <ScalarProperty Name="Seniority" ColumnName="Seniority" />
+          <ScalarProperty Name="codeCategory" ColumnName="codeCategory" />
+          <ScalarProperty Name="addressCont" ColumnName="addressCont" />
+          <ScalarProperty Name="phoneCont" ColumnName="phoneCont" />
+          <ScalarProperty Name="tellOfiiceCont" ColumnName="tellOfiiceCont" />
+          <ScalarProperty Name="emailCont" ColumnName="emailCont" />
+          <ScalarProperty Name="area" ColumnName="area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConToTender">
+      <EntityTypeMapping TypeName="DbtenderModel.ConToTender">
+        <MappingFragment StoreEntitySet="ConToTender">
+          <ScalarProperty Name="numConToTender" ColumnName="numConToTender" />
+          <ScalarProperty Name="numCon" ColumnName="numCon" />
+          <ScalarProperty Name="numTender" ColumnName="numTender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Editors">
+      <EntityTypeMapping TypeName="DbtenderModel.Editors">
+        <MappingFragment StoreEntitySet="Editors">
+          <ScalarProperty Name="numEditor" ColumnName="numEditor" />
+          <ScalarProperty Name="passEditor" ColumnName="passEditor" />
+          <ScalarProperty Name="nameEditor" ColumnName="nameEditor" />
+          <ScalarProperty Name="familyEditor" ColumnName="familyEditor" />
+          <ScalarProperty Name="addressEditor" ColumnName="addressEditor" />
+          <ScalarProperty Name="emailEditor" ColumnName="emailEditor" />
+          <ScalarProperty Name="phoneEditor" ColumnName="phoneEditor" />
+          <ScalarProperty Name="tellOfiicEditor" ColumnName="tellOfiicEditor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProducToTender">
+      <EntityTypeMapping TypeName="DbtenderModel.ProducToTender">
+        <MappingFragment StoreEntitySet="ProducToTender">
+          <ScalarProperty Name="numProduct" ColumnName="numProduct" />
+          <ScalarProperty Name="numTender" ColumnName="numTender" />
+          <ScalarProperty Name="NameProduct" ColumnName="NameProduct" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suggestions_">
+      <EntityTypeMapping TypeName="DbtenderModel.Suggestions_">
+        <MappingFragment StoreEntitySet="Suggestions ">
+          <ScalarProperty Name="numSuggestion_" ColumnName="numSuggestion " />
+          <ScalarProperty Name="numCont" ColumnName="numCont" />
+          <ScalarProperty Name="priceToproduct" ColumnName="priceToproduct" />
+          <ScalarProperty Name="dataSuggestion" ColumnName="dataSuggestion" />
+          <ScalarProperty Name="timeSuggestion" ColumnName="timeSuggestion" />
+          <ScalarProperty Name="percentOff" ColumnName="percentOff" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tenders">
+      <EntityTypeMapping TypeName="DbtenderModel.Tenders">
+        <MappingFragment StoreEntitySet="Tenders">
+          <ScalarProperty Name="numTender" ColumnName="numTender" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="numType" ColumnName="numType" />
+          <ScalarProperty Name="numEditor" ColumnName="numEditor" />
+          <ScalarProperty Name="codCategory" ColumnName="codCategory" />
+          <ScalarProperty Name="typeAcquire" ColumnName="typeAcquire" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="from" ColumnName="from" />
+          <ScalarProperty Name="till" ColumnName="till" />
+          <ScalarProperty Name="sizeRoomy" ColumnName="sizeRoomy" />
+          <ScalarProperty Name="sizeMax_Min" ColumnName="sizeMax/Min" />
+          <ScalarProperty Name="hourStart" ColumnName="hourStart" />
+          <ScalarProperty Name="hourFinish" ColumnName="hourFinish" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeTender">
+      <EntityTypeMapping TypeName="DbtenderModel.TypeTender">
+        <MappingFragment StoreEntitySet="TypeTender">
+          <ScalarProperty Name="numType" ColumnName="numType" />
+          <ScalarProperty Name="nameType" ColumnName="nameType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
