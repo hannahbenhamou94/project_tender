@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Tenders";
 }
+<link href="~/css/table.css" rel="stylesheet" />
 
 <div ng-app="MyApp">
     <div ng-controller="menuController">
@@ -30,79 +31,36 @@
 @section Scripts{
     <script src="~/Scripts/MyApp.js"></script>
 }
+<link href="~/css/table.css" rel="stylesheet" />
 
-<h2>מכרזים</h2>
+<h2>All Tenders</h2>
 <div>
-    <table class="table table-responsive"   id="t01">
-
-        <tr>
-
-            <td></td>
-            <td> </td>
-
-            <td>שעת סיום</td>
-            <td>תאריך סיום</td>
-            <td>עורך מכרז</td>
-            <td>סוג מכרז</td>
-            <td>שם מכרז</td>
-            <td>מספר מכרז</td>
-
-            <td>&nbsp;</td>
-        </tr>
-            @foreach (var item in Model)
-            {
-                if (item.status.Contains("פעיל"))
-                {
-                    <tr class="mycontainer" id="mainrow">
-                        <td>
-                            @{
-                                string href = "UpdateTender?id=" + item.numTender;
-                                <a href=@href>עדכן</a>
-                            }
-                        </td>
-                        <td>
-                            @{
-                                 href = "Suggestions?id=" + item.numTender;
-                                <a href=@href>ראה הצעות</a>
-                            }
-
-                        </td>
-                        <td>
-                            @item.hourFinish
-                        </td>
-                        <td>
-                            @item.till
-                        </td>
-                        <td>
-                            אדר
-                        </td>
-
-                        <td>
-                                       אנגלי           
-                        </td>
-                       
+    <table class="table table-responsive" id="table1">
+    <tr>
+        <th>Num Tender</th>
+        <th>Name</th>
+        <th>Type Acquire</th>
+        <th>Editors</th>
+        <th>Category</th>
+        <th>Type Tender</th>
+        <th>Status</th>
+        <th>       </th>
+        <th>       </th>
+          
 
 
-                        <td>
-                            @item.name
-                        </td>
-
-                        <td>
-                            @item.numTender
-                        </td>
+    </tr>
 
 
+    <tr class="mycontainer" id="mainrow"></tr>
 
-                    </tr>
-                                    }
-                                }
-</table>
+
+    </table>
 
 </div>
 
 <link href="~/css/navMenu.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="~/Scripts/myScripts.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -115,4 +73,5 @@
 <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">   </script>
 <link href="~/css/jquery-ui.css" rel="stylesheet" />
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<script src="~/Scripts/myScripts.js"></script>
+<script src="~/Scripts/Detail3.js"></script><link href="~/Content/bootstrap.css" rel="stylesheet" />
+

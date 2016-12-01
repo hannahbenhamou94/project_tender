@@ -32,23 +32,18 @@
     <script src="~/Scripts/MyApp.js"></script>
 }
 
-<h2>לקוחות</h2>
+<h2>My Clients</h2>
 <div>
     <table class="table table-responsive" id="t01">
         <tr>
-
-           
-            <td>אזור</td>
-            <td>אימייל</td>
-            <td>טלפון של המשרד</td>
-            <td>פלאפון</td>
-            <td>כתובת</td>
-            <td>ותק</td>
-            <td>שם החברה</td>
-            <td>שם משפחה</td>
-            <td>שם פרטי</td>
-
-
+            <th>First Name</th>
+            <th>Name's Compagny     </th>
+            <th>Seniority</th>
+            <th>Adress</th>
+            <th>Phone</th>
+            <th>Tel Office</th>
+            <th>Email</th>
+            <th>Area</th>
         </tr>
 
         @foreach (var item in Model)
@@ -56,16 +51,16 @@
                
                 <tr class="mycontainer" id="mainrow">
                     <td>
-                        @item.area
+                        @item.nameCont
                     </td>
                     <td>
-                        @item.emailCont
+                        @item.familyCont
                     </td>
                                         <td>
-                        @item.tellOfiiceCont
+                        @item.nameCompanyCont
                     </td>
                     <td>
-                        @item.phoneCont
+                        @item.Seniority
 
 
                     </td>
@@ -73,21 +68,19 @@
                         @item.addressCont
                     </td>
                     <td>
-                        @item.Seniority
+                        @item.phoneCont
                     </td>
                     <td>
-                        @item.nameCompanyCont
-                    </td>
-
-                    <td>
-                        @item.familyCont
+                        @item.tellOfiiceCont
                     </td>
 
                     <td>
-                        @item.nameCont
+                        @item.emailCont
                     </td>
 
-
+                    <td>
+                        @item.area
+                    </td>
 
                 </tr>
                                 
@@ -95,6 +88,8 @@
     </table>
 
 </div>
+<link href="~/css/table.css" rel="stylesheet" />
+
 @*<style>
         body {
             font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
@@ -187,3 +182,4 @@
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <script src="~/Scripts/myScripts.js"></script>
 <script src="~/Scripts/UpdateTender.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />

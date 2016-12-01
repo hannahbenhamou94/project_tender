@@ -77,11 +77,30 @@ namespace tender.Controllers
                          join s1 in DB.SuggestionDetail on p.numProduct equals s1.numproduct
                          where t.numTender == numTender
                          orderby p.NameProduct
-                         select new { t.name, t.numEditor, c.nameCategory, s.timeSuggestion, p.NameProduct, co.nameCompanyCont, co.phoneCont, s1.priceToProduct };
+                         select new { t.name, t.numEditor, c.nameCategory, s.timeSuggestion, p.NameProduct, co.nameCompanyCont, co.phoneCont, s1.priceToProduct};
 
 
             //return View();
 
+            return Json(result.Distinct().ToList(), JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        public ActionResult getDetail()
+        {
+
+            //if (Request.QueryString["id"] == null)
+            //    return View();
+            //int id = Convert.ToInt32(Request.QueryString["id"]);
+            DbtenderEntities1 DB = new DbtenderEntities1();
+
+            var result = from c in DB.Categories
+                         join t in DB.Tenders on c.codeCategory equals t.codCategory
+                         join s in DB.TypeTender on t.numType equals s.numType
+                         join co in DB.Editors on t.numEditor equals co.numEditor
+  
+                         select new { t.numTender, t.name, t.typeAcquire, co.nameEditor, c.nameCategory,t.@from, t.@till,s.nameType,t.status};
             return Json(result.ToList(), JsonRequestBehavior.AllowGet);
 
         }

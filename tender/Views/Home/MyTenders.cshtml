@@ -4,7 +4,8 @@
     ViewBag.Title = "MyTenders";
 }
 
-
+<script src="~/Scripts/Detail.js"></script>
+<link href="~/css/table.css" rel="stylesheet" />
 
 <div ng-app="MyApp">
     <div ng-controller="menuController">
@@ -31,152 +32,39 @@
 @section Scripts{
     <script src="~/Scripts/MyApp.js"></script>
 }
+<link href="~/css/table.css" rel="stylesheet" />
 
-<h2>מכרזים</h2>
+<h2>All tender</h2>
 <div>
-    <table class="table table-responsive" id="t01">
+
+    <table class="table table-responsive" id="table1">
         <tr>
+            <th>Num Tender</th>
+            <th>Name Tender</th>
+            <th>type Acquire</th>
+            <th>Name Editor</th>
+            <th>Category</th>
+            <th>Type Tender</th>
+            <th>Status</th>
+            <th>Update</th>
 
-            <td></td>
-            <td>סטטוס</td>
-            <td>סכום לתשלום</td>
-            <td>תאריך ההגשה</td>
 
-            <td>תאריך פרסום</td>
 
-            <td>קוד קטגוריה</td>
-            <td>שם מכרז</td>
 
-            <td>מספר מכרז</td>
 
         </tr>
 
-            @foreach (var item in Model)
-            {
-                if (item.status.Contains("פעיל") || item.status.Contains("עתידי"))
-                {
-<tr class="mycontainer" id="mainrow">
-                    <td>
-                        @{
-                           string href = "UpdateTender?id=" + item.numTender;
-                            <a href=@href>עדכן</a>
-                        }
-                    </td>
-                    <td>
-                        @item.status
-                    </td>
-                    <td>
-                        500
-                    </td>
-                    <td>
-                        @item.till
-                    </td>
-                    <td>
-                        @item.from
-                    </td>
-                    <td>
-                        @item.codCategory
-                    </td>
 
-                    <td>
-                        @item.name
+        <tr class="mycontainer" id="mainrow"></tr>
 
 
-                    </td>
-
-
-                    <td>
-                        @item.numTender
-
-
-                    </td>
-
-
-
-                </tr>
-            }
-        }
     </table>
 
 </div>
-@*<style>
-    body {
-        font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-        color: #4f6b72;
-        background: #E6EAE9;
-    }
-
-    a {
-        color: #c75f3e;
-    }
-
-    #mytable {
-        width: 700px;
-        padding: 0;
-        margin: 0;
-    }
-
-    caption {
-        padding: 0 0 5px 0;
-        width: 700px;
-        font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-        text-align: right;
-    }
-
-    th {
-        font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-        color: #4f6b72;
-        border-right: 1px solid #C1DAD7;
-        border-bottom: 1px solid #C1DAD7;
-        border-top: 1px solid #C1DAD7;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        text-align: left;
-        padding: 6px 6px 6px 12px;
-        background: #CAE8EA url(images/bg_header.jpg) no-repeat;
-    }
-
-        th.nobg {
-            border-top: 0;
-            border-left: 0;
-            border-right: 1px solid #C1DAD7;
-            background: none;
-        }
-
-    td {
-        border-right: 1px solid #C1DAD7;
-        border-bottom: 1px solid #C1DAD7;
-        background: #fff;
-        padding: 6px 6px 6px 12px;
-        color: #4f6b72;
-    }
-
-
-        td.alt {
-            background: #F5FAFA;
-            color: #797268;
-        }
-
-    th.spec {
-        border-left: 1px solid #C1DAD7;
-        border-top: 0;
-        background: #fff url(images/bullet1.gif) no-repeat;
-        font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-    }
-
-    th.specalt {
-        border-left: 1px solid #C1DAD7;
-        border-top: 0;
-        background: #f5fafa url(images/bullet2.gif) no-repeat;
-        font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-        color: #797268;
-    }
-</style>
-<link href="~/css/navMenu.css" rel="stylesheet" />*@
 
 <link href="~/css/navMenu.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="~/Scripts/myScripts.js"></script>
+<script src="~/Scripts/Detail.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -191,3 +79,4 @@
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <script src="~/Scripts/myScripts.js"></script>
 <script src="~/Scripts/UpdateTender.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />

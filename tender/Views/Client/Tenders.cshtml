@@ -25,163 +25,57 @@
     </div>
 </div>
 @* Add css here for nav menu *@
-<link href="~/css/ClientMenu.css" rel="stylesheet" />
+<link href="~/css/navMenu.css" rel="stylesheet" />
 
 @* add js here for angular app *@
 @section Scripts{
     <script src="~/Scripts/appClient.js"></script>
 }
 
+<link href="~/css/table.css" rel="stylesheet" />
+
+<h2>מכרזים</h2>
+<div>
+
+    <table class="table table-responsive" id="table1">
+        <tr>
+            <th>Num Tender</th>
+            <th>Name</th>
+            <th>Type Acquire</th>
+            <th>Editor</th>
+            <th> Category</th>
+            <th>Type Tender</th>
+            @*<td>תאריך פרסום</td>
+            <td>תאריך ההגשה</td>*@
+            <th>Status</th>
+            <th>      </th>
+            <th>      </th>
+            <th>      </th>
 
 
+        </tr>
 
+
+        <tr class="mycontainer" id="mainrow"></tr>
+
+
+    </table>
+
+</div>
 <link href="~/css/navMenu.css" rel="stylesheet" />
-
-
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="~/Scripts/myScripts.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link type="text/css" href="css/bootstrap.min.css" />
+<link type="text/css" href="css/bootstrap.min.css">
 <link type="text/css" href="css/bootstrap-timepicker.min.css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
-
-<script type="text/javascript"
-        src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-</script>
-<script type="text/javascript"
-        src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-</script>
-</head>
-<div>
-    <h2>מכרזים</h2>
-
-    <table class="table table-responsive" id="t01">
-        <tr>
-            <td></td>
-            <td></td>
-            <td>סטטוס</td>
-            <td>סכום לתשלום</td>
-            <td>תאריך ההגשה</td>
-            <td>תאריך פרסום</td>
-            <td>יחידת מפרסמת</td>
-            <td>מספר מכרז</td>
-            <td>שם מכרז</td>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            if ((item.status.Contains("פעיל") || (item.status.Contains("עתידי")) && (item.numType == 1)))
-            {
-                //engilsh
-                <tr class="mycontainer" id="mainrow">
-                    @*<a href="/Suggestions/Suggestions?numtender=2">*@
-
-                    <td>
-                        @{
-                            string href = "Suggestions?id=" + item.numTender;
-                            <a href=@href>ראה הצעות</a>
-
-                        }
-
-                    </td>
-
-                    <td>
-                        @{
-                            href = "../Suggestions/Suggestions?id=" + item.numTender;
-                            <a href=@href>הצע מחיר</a>
-                        }
-                    </td>
-
-                    <td>
-                        @item.status
-                    </td>
-                    <td>
-                        מכרז אנגלי
-                    </td>
-                    <td>
-                        @item.till
-                    </td>
-                    <td>
-                        @item.from
-                    </td>
-                    <td>
-                        @item.codCategory
-                    </td>
-
-                    <td>
-                        @item.numTender
-                    </td>
-
-                    <td>
-                        @item.name
-                    </td>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">   </script>
+<link href="~/css/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 
-
-                </tr>
-                                }
-                            }
-        
-                            @foreach (var item in Model)
-                            {
-                                if ((item.status.Contains("פעיל") || (item.status.Contains("עתידי")) && (item.numType == 2)))
-                                {
-                <tr class="mycontainer" id="mainrow">
-                    @*<a href="/Suggestions/Suggestions?numtender=2">*@
-
-                    <td>
-                        @{
-                            string href = "Suggestions?id=" + item.numTender;
-                            <a href=@href>ראה הצעות</a>
-
-                        }
-
-                    </td>
-                
-                    <td>
-@{
-    href = "../Suggestions/HollandSuggest?id=" + item.numTender;
-                        <a href=@href>הצע מחיר</a>
-  }
-                                      </td>
-
-                        <td>
-                            @item.status
-                        </td>
-                        <td>
-                            מכרז הולנדי
-                        </td>
-                        <td>
-                            @item.till
-                        </td>
-                        <td>
-                            @item.from
-                        </td>
-                        <td>
-                            @item.codCategory
-                        </td>
-
-                        <td>
-                            @item.numTender
-                        </td>
-
-                        <td>
-                            @item.name
-                        </td>
-
-
-
-</tr>
-                }
-                }
-        
-            </table>
-
-        </div>
-
-<link href="~/css/navMenu.css" rel="stylesheet" />
+ <script src="~/Scripts/detail2.js"></script>

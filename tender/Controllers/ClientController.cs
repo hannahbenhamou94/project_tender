@@ -42,7 +42,7 @@ namespace tender.Controllers
             return Json(result.ToList(), JsonRequestBehavior.AllowGet);
 
         }
-
+     
         public JsonResult GetSiteMenus()
         {
             using (DbtenderEntities1 dc = new DbtenderEntities1())
@@ -67,6 +67,23 @@ namespace tender.Controllers
             List<Tenders> TypeTender = DB.Tenders.ToList();
 
             return View(TypeTender);
+
+        }
+
+        public ActionResult getDetail()
+        {
+
+            //if (Request.QueryString["id"] == null)
+            //    return View();
+            //int id = Convert.ToInt32(Request.QueryString["id"]);
+            DbtenderEntities1 DB = new DbtenderEntities1();
+
+            var result = from c in DB.Categories
+                         join t in DB.Tenders on c.codeCategory equals t.codCategory
+                         join s in DB.TypeTender on t.numType equals s.numType
+                         join co in DB.Editors on t.numEditor equals co.numEditor
+                         select new { t.numTender, t.name, t.typeAcquire, co.nameEditor, c.nameCategory, t.till, s.nameType,t.status };
+            return Json(result.ToList(), JsonRequestBehavior.AllowGet);
 
         }
 

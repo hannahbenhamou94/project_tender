@@ -199,6 +199,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\conToTenderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SuggestionsController.cs" />
@@ -274,11 +275,16 @@
     <Content Include="css\ClientMenu.css" />
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\navMenu.css" />
+    <Content Include="css\table.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\logo.jpg" />
     <Content Include="Images\next.jpg" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\search1.png" />
+    <Content Include="Images\לוגו.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -307,6 +313,9 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ClientSuggest.js" />
+    <Content Include="Scripts\Detail.js" />
+    <Content Include="Scripts\detail2.js" />
+    <Content Include="Scripts\Detail3.js" />
     <Content Include="Scripts\HollandSuggestions.js" />
     <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -373,6 +382,7 @@
     <Content Include="Views\Home\Add_Client.cshtml" />
     <Content Include="Views\Home\MyClients.cshtml" />
     <Content Include="Views\Suggestions\HollandSuggest.cshtml" />
+    <Content Include="Views\conToTender\conTo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

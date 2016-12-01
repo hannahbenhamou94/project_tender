@@ -122,7 +122,7 @@ $(document).ready(function () {
         if ($('#product').val() == "0") {
             isAllValid = false;
             $('#product').siblings('span.error').css('visibility', 'visible');
-            alert('isAllValid product' + isAllValid);
+         //   alert('isAllValid product' + isAllValid);
         }
         else {
             $('#product').siblings('span.error').css('visibility', 'hidden');
@@ -196,23 +196,20 @@ $(document).ready(function () {
                 (parseInt($('.quantity', this).val()) || 0) == 0 ||
                  (parseInt($('.price', this).val()) || 0) == 0
                 ) {
-                alert('pass the iff');
+              //  alert('pass the iff');
                 errorItemCount++;
                 $(this).addClass('error');
             } else {
-                alert($('#tenderNum').val());
+               // alert($('#tenderNum').val());
                 var orderItem = {
                     numProduct: parseInt($('.numProduct', this).val()),
                     NameProduct: $('product', this).val(),
                     Amount: parseInt($('.quantity', this).val()),
-                     numTender: parseInt($('#tenderNum').val()),
+                    sizeRoomy: parseFloat($('.roomy', this).val()),
+                    numTender: parseInt($('#tenderNum').val()),
                     PriceLimit: parseFloat($('.price', this).val())
                 }
-                alert('push before');
-
                 list.push(orderItem);
-                alert('push list');
-
             }
         })
 
@@ -260,8 +257,6 @@ $(document).ready(function () {
         }
 
         if (isAllValid) {
-            alert(' is all valid');
-
             var data = {
                 numTender: $('#tenderNum').val().trim(),
                 name: $('#tenderName').val().trim(),
@@ -285,12 +280,12 @@ $(document).ready(function () {
                 contentType: 'application/json',
                 success: function (data) {
                     if (data.status) {
-                        alert('Successfully saved');
+                      //  alert('Successfully saved');
                         //here we will clear the form
                         list = [];
                         $('#tenderNum,#tenderName,#from,#til,l,#description').val('');
                         $('#orderdetailsItems').empty();
-                        alert('Successfully 2');
+                    //    alert('Successfully 2');
 
                     }
                     else {

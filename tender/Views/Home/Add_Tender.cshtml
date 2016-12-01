@@ -21,26 +21,31 @@
 @* Add css here for nav menu *@
 <link href="~/css/navMenu.css" rel="stylesheet" />
 
-@* add js here for angular app *@
+@**@
 @section Scripts{
     <script src="~/Scripts/MyApp.js"></script>
+<script src="~/Scripts/jquery-2.2.4.min.js"></script>
+<script src="~/Scripts/myScripts.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 }
 
 
-<script src="~/Scripts/myScripts.js"></script>
 
  
 @{
     ViewBag.Title = "Add_Tender";
 }
+
 <div class="container">
     <div class="master">
-        <h2>Tender</h2>
+        <h2>Add Tender</h2>
         <table class="table table-responsive">
             <tr>
                 <td> Tender Num </td>
                 <td>
-                    </select>
+                    
 
                     <input type="text" id="tenderNum" class="form-control" />
                     <span class="error">Tender no required</span>
@@ -54,14 +59,14 @@
             <tr>
                 <td> categories </td>
                 <td>
-                    <select id="productCategory" class="form-control" onchange="LoadProduct(this)">
+                    <select id="productCategory" class="form-control" @*onchange="LoadProduct(this)"*@>
                         <option>Select</option>
                     </select>
                     <span class="error">Select Category</span>
                 </td>
                 <td>editor</td>
                 <td>
-                    <select id="Editors" class="form-control" onselect="LoadEditor(this)">
+                    <select id="Editors" class="form-control" @*onselect="LoadEditor(this)"*@>
                         <option>Select</option>
                     </select>
                     <span class="error">Select Editor</span>
@@ -70,7 +75,7 @@
             <tr>
                 <td>typem tender</td>
                 <td>
-                    <select id="typeTender" class="form-control" onselect="LoadType(this)">
+                    <select id="typeTender" class="form-control" @*onselect="LoadType(this)"*@>
                         <option>Select</option>
                     </select>
                     <span class="error">Select type Tender</span>
@@ -90,9 +95,9 @@
             <tr>
                 <td>status</td>
                 <td>
-                    <select id="statatus" class="form-control" onselect="LoadType(this)">
+                    <select id="status" class="form-control" @*onselect="LoadType(this)"*@>
                         <option>Select</option>
-                        <option>עתידי</option>
+                        <option>טרם</option>
                         <option>פעיל</option>
                         <option>סגור</option>
                     </select>
@@ -111,7 +116,7 @@
                 </td>
                 <td>till</td>
                 <td>
-                    <input type="date" id="till" class="form-control" placeholder="yyyy-MM-dd" min="2013-01-01" max="2019-12-31" required />
+                    <input type="date" id="till" class="form-control" placeholder="yyyy-MM-dd" min="2016-01-01" max="2019-12-31" required />
                     <span class="error">Valid till required (ex: MM-dd-yyyy)</span>
                 </td>
             </tr>
@@ -171,23 +176,38 @@
                     <span class="error">Valid price required</span>
                 </td>
                 <td>
+
+                 
+
+
+
+
                     <input type="button" id="add" value="add" style="width:80px" class="btn btn-success" />
-                </td>
+                    <br />
+                    <br />
+
+                    @Html.ActionLink("Add Contestants", "../conToTender/conTo")
+                    <br />
+                    <br />
+
+                    @Html.ActionLink("Add New Clients", "Add_Client")
+                 </td>
+
+    
             </tr>
         </table>
+
+
         <div id="orderItems">
             <table class="table table-responsive" id="orderdetailsItems"></table>
             <span id="orderItemError" style="color:red"></span>
         </div>
         <div style="padding:10px 0; text-align:right">
-            <input id="submit" type="button" value="Save" class="btn btn-warning" style="padding:10px 20px" />
+            <input id="submit" type="button" value="Save Order" class="btn btn-warning" style="padding:10px 20px" />
         </div>
     </div>
 </div>
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="~/Scripts/myScripts.js"></script>
+
 @*<script type="text/javascript">
         $(function () {
             $('#orderDate').datepicker({
@@ -207,19 +227,4 @@
         background-color: rgba(255,0,0,0.35);
     }
 </style>
-<link href="~/css/navMenu.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="~/Scripts/myScripts.js"></script>
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link type="text/css" href="css/bootstrap.min.css">
-<link type="text/css" href="css/bootstrap-timepicker.min.css" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
-
-<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">   </script>
-<link href="~/css/jquery-ui.css" rel="stylesheet" />
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<script src="~/Scripts/myScripts.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />

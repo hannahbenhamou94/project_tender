@@ -42,7 +42,7 @@
 <script src="~/Scripts/HollandSuggestions.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link href="~/css/jquery-ui.css" rel="stylesheet" />
-<div class="details">
+<div id="dd"  class="details">
     <h2>פירוט המכרז</h2>
 
     <label id="numTender"></label>
@@ -53,9 +53,8 @@
                 <td><h1>name tender</h1></td>*@
         </tr>
     </table>
-    <table class="table table-responsive" id="tblsuggest1">
+    <table class="table table-responsive" id="t01">
         <tr class="mycontainer" id="mainrow">
-            <td>numProduct</td>
             <td>Product</td>
             <td>Price</td>
             <td>Quantity</td>
@@ -66,15 +65,15 @@
         <table class="table table-responsive" id="orderdetailsItems"></table>
         <span id="orderItemError" style="color:red"></span>
     </div>
-    
+  
     <div style="padding:10px 0; text-align:right">
-        <input id="submit" href="HollandSuggest";
-               type="button" value="Save" class="btn btn-warning" style="padding:10px 20px"  onclick="clickAndDisable(this);" />
+        <input id="stop"   type="button" onclick="stopTender();" value="Acquire Tender" class="btn btn-warning" style="padding:10px 20px"" />
     
     </div>
 </div>
 
 <script>
-    setTimeout(function()
-    {document.getElementById('submit2').removeAttribute('href');}, 1);
+    //setTimeout(function()
+    //{document.getElementById('submit2').removeAttribute('href');}, 1);
 </script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />

@@ -58,8 +58,8 @@ html {
 }
 
 body {
-  margin: 0;
-}
+    background-image: linear-gradient(to right, rgb(189, 195, 199) 0%, rgb(236, 240, 241) 40%, rgb(236, 240, 241) 60%, rgb(189, 195, 199) 100%);margin:0}
+
 
 a:focus {
   outline: thin dotted;
@@ -517,6 +517,11 @@ h1,
 h2,
 .h2 {
   font-size: 30px;
+   /*color: rgb(155, 178, 199);*/
+    text-shadow: 0 1px 0 white;
+    text-align:center;
+        color: rgb(155, 178, 199);
+
 }
 
 h3,

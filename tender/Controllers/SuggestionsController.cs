@@ -18,7 +18,54 @@ namespace tender.Controllers
         }
         public ActionResult HollandSuggest()
         {
+              return View();
+        }
+         
+        public ActionResult stopTender(string numTender)
+        {
+
+            try
+            {
+                using (DbtenderEntities1 DB = new DbtenderEntities1())
+                {
+                    var tender = DB.Tenders.Find(Convert.ToInt32(numTender));
+                    tender.status = "סגור";
+                    DB.SaveChanges();
+                }
+            }
+            catch (Exception) { }
             return View();
+        }
+
+        public ActionResult getSuggestionDetail(int numTender)
+        {
+
+            DbtenderEntities1 DB = new DbtenderEntities1();
+
+
+            var status = from t in DB.Tenders
+                         where t.numTender == numTender 
+                         select  t.status;
+            if(status.ToList()[0].ToString().Contains("סגור"))
+            {
+                return Json("close", JsonRequestBehavior.AllowGet);
+
+            }
+
+            //return View();
+
+
+            var result = from  p in DB.ProducToTender
+                          join  s in DB.Suggestions on p.numTender equals s.numTender
+                           where p.numTender == numTender 
+                         orderby p.NameProduct
+                         select  new { p.numProduct,p.NameProduct,p.Amount,s.priceToproduct };
+
+
+            //return View();
+
+            return Json(result.Distinct().ToList(), JsonRequestBehavior.AllowGet);
+
         }
 
         public ActionResult getTender(int numTender)

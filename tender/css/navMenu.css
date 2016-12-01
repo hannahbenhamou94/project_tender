@@ -1,4 +1,10 @@
 ﻿/*Here I will write css for show horizantal nav menu*/
+h1,h2{
+    text-align:center;
+      font-size: 30px;
+   color: rgb(155, 178, 199);
+    text-shadow: 0 1px 0 white;
+}
 ul {
   list-style: none;
   padding: 0;
@@ -14,6 +20,7 @@ ul li {
   background: #000;
 
 
+
 }
 li ul { display: none; }
  
@@ -26,6 +33,7 @@ ul li a {
     border-top: 0 dotted;
   border-bottom: 4px solid #000000;
                     text-decoration: none;
+
 
 }
  
@@ -44,6 +52,8 @@ li:hover li { float: none; }
  
 li:hover a { background: #000;
       text-decoration: none;
+        text-align:center;
+
 
 }
  
@@ -63,3 +73,8 @@ ul:after {
   display: table; /* 2 */
 }
 ul:after { clear: both; }
+body
+{
+    text-align:center;
+        background-image: linear-gradient(to right, rgb(189, 195, 199) 0%, rgb(236, 240, 241) 40%, rgb(236, 240, 241) 60%, rgb(189, 195, 199) 100%);margin:0}
+
