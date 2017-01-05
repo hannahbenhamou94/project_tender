@@ -16,6 +16,14 @@ namespace tender.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Suggestions(FormCollection ff)
+        {
+            return View();
+        }
+
+
         public ActionResult HollandSuggest()
         {
               return View();
@@ -37,6 +45,7 @@ namespace tender.Controllers
             return View();
         }
 
+      
         public ActionResult getSuggestionDetail(int numTender)
         {
 
@@ -53,10 +62,8 @@ namespace tender.Controllers
             }
 
             //return View();
-
-
             var result = from  p in DB.ProducToTender
-                          join  s in DB.Suggestions on p.numTender equals s.numTender
+join  s in DB.Suggestions on p.numTender equals s.numTender
                            where p.numTender == numTender 
                          orderby p.NameProduct
                          select  new { p.numProduct,p.NameProduct,p.Amount,s.priceToproduct };
@@ -67,6 +74,42 @@ namespace tender.Controllers
             return Json(result.Distinct().ToList(), JsonRequestBehavior.AllowGet);
 
         }
+        public JsonResult save(string str)
+        {
+            return Json("success:saved", JsonRequestBehavior.AllowGet);
+        }
+
+        //[HttpPost]
+        //public JsonResult save(Suggestions s1)
+        //{
+        //    bool status = false;
+        //    TimeSpan dateOrgF;
+        //    var isValidDateFrom = DateTime.TryParseExact(s1.timeSuggestion.ToString(), "mm-dd-yyyy", null, System.Globalization.DateTimeStyles.None, out dateOrgF);
+        //    if (isValidDateFrom)
+        //    {
+        //        s1.timeSuggestion = dateOrgF;
+        //    }
+            
+
+        //    var isValidModel = TryUpdateModel(s1);
+        //    if (isValidModel)
+        //    {
+        //        using (DbtenderEntities1 DB = new DbtenderEntities1())
+        //        {
+        //            //foreach (var item in Tenders.ProducToTender)
+        //            //{
+        //            //    DB.ProducToTender.Add(item) ;
+        //            //}
+        //            //DB.SaveChanges();
+                    
+        //            DB.Suggestions .Add(s1);
+        //            DB.SaveChanges();
+        //            status = true;
+                   
+        //        }
+        //    }
+        //    return new JsonResult { Data = new { status = status } };
+        //}
 
         public ActionResult getTender(int numTender)
         {

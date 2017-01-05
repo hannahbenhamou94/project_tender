@@ -280,6 +280,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="HtmlPage1.html" />
+    <Content Include="Images\arrow.png" />
     <Content Include="Images\logo.jpg" />
     <Content Include="Images\next.jpg" />
     <Content Include="Images\search.png" />
@@ -316,11 +318,15 @@
     <Content Include="Scripts\Detail.js" />
     <Content Include="Scripts\detail2.js" />
     <Content Include="Scripts\Detail3.js" />
+    <Content Include="Scripts\flipclock.js" />
+    <Content Include="Scripts\flipclock.min.js" />
     <Content Include="Scripts\HollandSuggestions.js" />
     <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -330,6 +336,7 @@
     <Content Include="Scripts\myScript2.js" />
     <Content Include="Scripts\myScripts.js" />
     <Content Include="Scripts\MySuggestion.js" />
+    <Content Include="Scripts\pickerjs.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Suggestions.js" />
@@ -383,6 +390,10 @@
     <Content Include="Views\Home\MyClients.cshtml" />
     <Content Include="Views\Suggestions\HollandSuggest.cshtml" />
     <Content Include="Views\conToTender\conTo.cshtml" />
+    <Content Include="Views\Countdown_Timer.cshtml" />
+    <Content Include="Views\timePicker.cshtml" />
+    <Content Include="Views\Home\tempdateTime.cshtml" />
+    <Content Include="Views\Home\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

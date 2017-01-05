@@ -3,7 +3,8 @@ function LoadDTender() {
     if (!url) {
         url = window.location.href;
         url = url.substr(url.indexOf('=') + 1);
-    }
+    } alert();
+    
     $.ajax({
         type: "POST",
         url: "/Suggestions/getTender",
@@ -15,12 +16,13 @@ function LoadDTender() {
         },
         error: function (error) {
             console.log(error);
-        }
+               }
     })
 }
 
 function renderDTender(element, data) {
     //render product
+    alert();
     $.each(data, function (i, v) {
         var table = document.getElementById("tbldtender");
         var row = table.insertRow(i + 1);
@@ -28,6 +30,8 @@ function renderDTender(element, data) {
         var cell2 = row.insertCell(1);
         cell1.innerHTML = v.numTender;
         cell2.innerHTML = v.name;
+        alert(v.till+v.hourFinish+2);
+
     }
     )
 }

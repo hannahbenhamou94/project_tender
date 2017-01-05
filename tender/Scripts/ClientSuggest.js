@@ -15,6 +15,7 @@ function LoadDTender() {
             //render products to appropriate dropdown
             renderDTender(data);
         },
+       
         error: function (error) {
             console.log(error);
         }

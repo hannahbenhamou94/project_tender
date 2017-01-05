@@ -21,19 +21,19 @@
 @* Add css here for nav menu *@
 <link href="~/css/navMenu.css" rel="stylesheet" />
 
-@**@
+
 @section Scripts{
     <script src="~/Scripts/MyApp.js"></script>
-<script src="~/Scripts/jquery-2.2.4.min.js"></script>
-<script src="~/Scripts/myScripts.js"></script>
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
+    <script src="~/Scripts/myScripts.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 }
 
 
 
- 
+
 @{
     ViewBag.Title = "Add_Tender";
 }
@@ -45,7 +45,7 @@
             <tr>
                 <td> Tender Num </td>
                 <td>
-                    
+
 
                     <input type="text" id="tenderNum" class="form-control" />
                     <span class="error">Tender no required</span>
@@ -124,21 +124,15 @@
                 <td>hour strat</td>
                 <td>
                     @{
-                        Html.RenderPartial("~/Views/datePicker.cshtml", new ViewDataDictionary { { "id", "111" } });
+                        Html.RenderPartial("~/Views/timePicker.cshtml", new ViewDataDictionary { { "id", "hourStart" } });
                     }
                 </td>
 
                 <td>hour strat</td>
                 <td>
                     @{
-                        Html.RenderPartial("~/Views/datePicker.cshtml", new ViewDataDictionary { { "id", "222" } });
+                        Html.RenderPartial("~/Views/timePicker.cshtml", new ViewDataDictionary { { "id", "hourFinish" } });
                     }
-                    @*<div id="datetimepicker1" class="input-append">
-                            <input id="finish" type="text" data-format="hh:mm:ss"></input>
-                            <span class="add-on">
-                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                            </span>
-                        </div>*@
                 </td>
             </tr>
         </table>
@@ -158,7 +152,7 @@
             </tr>
             <tr class="mycontainer" id="mainrow">
                 <td>
-                    <input type="number" id="numProduct" class="numProduct form-control" value="" />
+                    <input disabled type="number" id="numProduct" class="numProduct form-control" value="1">
                 </td>
                 <td>
                     <input id="product" type="text" class="product form-control" value="" />
@@ -176,34 +170,16 @@
                     <span class="error">Valid price required</span>
                 </td>
                 <td>
-
-                 
-
-
-
-
                     <input type="button" id="add" value="add" style="width:80px" class="btn btn-success" />
-                    <br />
-                    <br />
-
-                    @Html.ActionLink("Add Contestants", "../conToTender/conTo")
-                    <br />
-                    <br />
-
-                    @Html.ActionLink("Add New Clients", "Add_Client")
-                 </td>
-
-    
+                </td>
             </tr>
         </table>
-
-
         <div id="orderItems">
             <table class="table table-responsive" id="orderdetailsItems"></table>
             <span id="orderItemError" style="color:red"></span>
         </div>
         <div style="padding:10px 0; text-align:right">
-            <input id="submit" type="button" value="Save Order" class="btn btn-warning" style="padding:10px 20px" />
+            <input id="submit" type="button" value="Save Tender" class="btn btn-warning" style="padding:10px 20px" />
         </div>
     </div>
 </div>

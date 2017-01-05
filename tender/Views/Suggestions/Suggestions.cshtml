@@ -34,6 +34,7 @@
     <script src="~/Scripts/appClient.js"></script>
 }
 
+<iframe src="~/HtmlPage1.html?time=8" scrolling="no" style="width:700px"></iframe>
 
 
 
@@ -42,32 +43,34 @@
 <script src="~/Scripts/Suggestions.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link href="~/css/jquery-ui.css" rel="stylesheet" />
-<div class="details">
-    <h2>פירוט המכרז</h2>
-   
-    <label id="numTender" ></label>
-    <table class="table table-responsive" id="tbldtender">
-        <tr class="mycontainer" id="mainrow">
-<tr>
-            @*<td><h1>num tender</h1></td>
-            <td><h1>name tender</h1></td>*@
-        </tr>
-    </table>
-    <table class="table table-responsive" id="tblsuggest">
-        <tr class="mycontainer" id="mainrow">
-            <td>numProduct</td>
-            <td>Product</td>
-            <td>Quantity</td>
-            <td>suggestion price</td>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
-    <div id="orderItems">
-        <table class="table table-responsive" id="orderdetailsItems"></table>
-        <span id="orderItemError" style="color:red"></span>
+@*<form method="post" action="@Url.Action("Suggestions", "Suggestions" ) ">*@
+    <div class="details">
+        <h2>פירוט המכרז</h2>
+
+        <label id="numTender"></label>
+        <table class="table table-responsive" id="tbldtender">
+            <tr class="mycontainer" id="mainrow">
+            <tr>
+                @*<td><h1>num tender</h1></td>
+                    <td><h1>name tender</h1></td>*@
+            </tr>
+        </table>
+        <table class="table table-responsive" id="tblsuggest">
+            <tr class="mycontainer" id="mainrow">
+                <td>numProduct</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>suggestion price</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        <div id="orderItems">
+            <table class="table table-responsive" id="orderdetailsItems"></table>
+            <span id="orderItemError" style="color:red"></span>
+        </div>
+        <div style="padding:10px 0; text-align:right">
+            <input id="submit" type="submit" value="Suggest Price" class="btn btn-warning" style="padding:10px 20px" onclick="save()">
+        </div>
     </div>
-    <div style="padding:10px 0; text-align:right">
-        <input id="submit" type="button" value="Suggest Price" class="btn btn-warning" style="padding:10px 20px" onclick="clickAndDisable()"> 
-    </div>
-</div>
+@*</form>*@
 <link href="~/Content/bootstrap.css" rel="stylesheet" />

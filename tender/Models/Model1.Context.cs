@@ -14,7 +14,8 @@ namespace tender.Models
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+    using System.Threading.Tasks;
+
     public partial class DbtenderEntities1 : DbContext
     {
         public DbtenderEntities1()
@@ -42,6 +43,11 @@ namespace tender.Models
         public virtual ObjectResult<ss_Result> ss()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ss_Result>("ss");
+        }
+
+        internal static Task PasswordSignInAsync(string email, string password, bool rememberMe, bool shouldLockout)
+        {
+            throw new NotImplementedException();
         }
     }
 }
