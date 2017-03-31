@@ -14,8 +14,7 @@ namespace tender.Models
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    using System.Threading.Tasks;
-
+    
     public partial class DbtenderEntities1 : DbContext
     {
         public DbtenderEntities1()
@@ -33,21 +32,17 @@ namespace tender.Models
         public virtual DbSet<ConToTender> ConToTender { get; set; }
         public virtual DbSet<Editors> Editors { get; set; }
         public virtual DbSet<TypeTender> TypeTender { get; set; }
-        public virtual DbSet<SuggestionDetail> SuggestionDetail { get; set; }
         public virtual DbSet<SiteMenu> SiteMenu { get; set; }
         public virtual DbSet<ClientMenu> ClientMenu { get; set; }
+        public virtual DbSet<Tenders> Tenders { get; set; }
+        public virtual DbSet<SuggestionDetail> SuggestionDetail { get; set; }
+        public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Suggestions> Suggestions { get; set; }
         public virtual DbSet<ProducToTender> ProducToTender { get; set; }
-        public virtual DbSet<Tenders> Tenders { get; set; }
     
         public virtual ObjectResult<ss_Result> ss()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ss_Result>("ss");
-        }
-
-        internal static Task PasswordSignInAsync(string email, string password, bool rememberMe, bool shouldLockout)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -5,7 +5,6 @@
 
 
 
-
 <div ng-app="MyApp">
     <div ng-controller="menuController">
         @* Here first of all we will create a ng-template *@
@@ -21,6 +20,7 @@
             @* Here we will load only top level menu *@
             @*<li ng-repeat="menu in SiteMenu | filter:{ParentIf : 0}" ng-include="'treeMenu'"></li>*@
             <li ng-repeat="menu in SiteMenu | filter:{ParentId : 0} : true" ng-include="'treeMenu'"></li>
+            <li style="margin-left:34.15%"><img src="~/Images/logo1.png" width="100" /></li>
         </ul>
     </div>
 </div>
@@ -30,10 +30,11 @@
 @* add js here for angular app *@
 @section Scripts{
     <script src="~/Scripts/MyApp.js"></script>
+
 }
 
 
-<script src="~/Scripts/Add_Client.js"></script>
+
 
 
 <div class="container">
@@ -44,8 +45,8 @@
                 <td> Num Of Client</td>
                 <td>
 
-                    <input type="text" id="numCon" class="form-control" />
-                    <span class="error">Number required</span>
+                    <input disabled type="text" id="numCon" class="form-control" />
+
                 </td>
                 <td>First Name </td>
                 <td>
@@ -97,33 +98,38 @@
 
                 <td>Email </td>
                 <td>
-                    <input type="text" id="emailCont" class="form-control" value="" />
+                    <input type="email" id="emailCont" class="form-control" value="" />
                     <span class="error">Email required</span>
                 </td>
                 <td>Area </td>
                 <td>
-                    <input type="text" id="area" class="form-control" value="" />
-                    <span class="error">area</span>
+                    <select id="area" class="form-control">
+                        <option>Select</option>
+                        <option>מרכז</option>
+                        <option>צפון</option>
+                        <option>דרום</option>
+                    </select>
+                    <span class="error">Select type Tender</span>
                 </td>
             </tr>
         </table>
     </div>
     <table>
 
-    <tr class="mycontainer" id="mainrow">
+        <tr class="mycontainer" id="mainrow">
 
-        <td>
-            <input type="button" id="add" value="add" style="width:80px" class="btn btn-success" />
-        </td>
-    </tr>
-        </table>
-     
+            <td>
+                <input type="button" id="add" value="add" style="width:80px" class="btn btn-success" />
+            </td>
+        </tr>
+    </table>
 
-    </div>
+
+</div>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="~/Scripts/myScripts.js"></script>
+@*<script src="~/Scripts/myScripts.js"></script>*@
 @*<script type="text/javascript">
         $(function () {
             $('#orderDate').datepicker({
@@ -145,17 +151,10 @@
 </style>
 <link href="~/css/navMenu.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="~/Scripts/myScripts.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link type="text/css" href="css/bootstrap.min.css">
-<link type="text/css" href="css/bootstrap-timepicker.min.css" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<link type="text/css" href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
-<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">   </script>
-<link href="~/css/jquery-ui.css" rel="stylesheet" />
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<script src="~/Scripts/myScripts.js"></script>
+<script src="~/Scripts/Add_Client.js"></script>

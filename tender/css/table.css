@@ -32,3 +32,9 @@
   table tr:nth-child(odd) { /* added all odd rows a #fff color  */
         background-color:#fff;
     }
+
+    @font-face {
+        font-family: 'glyphicons-halflings-regular';
+        src: url('../fonts/glyphicons-halflings-regular.eot') format('embedded-opentype');
+    }
+body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}

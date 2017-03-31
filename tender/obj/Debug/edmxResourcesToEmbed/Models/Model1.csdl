@@ -59,23 +59,15 @@
     <EntitySet Name="ConToTender" EntityType="Self.ConToTender" />
     <EntitySet Name="Editors" EntityType="Self.Editors" />
     <EntitySet Name="TypeTender" EntityType="Self.TypeTender" />
-    <EntitySet Name="SuggestionDetail" EntityType="DbtenderModel.SuggestionDetail" />
     <EntitySet Name="SiteMenu" EntityType="DbtenderModel.SiteMenu" />
     <EntitySet Name="ClientMenu" EntityType="DbtenderModel.ClientMenu" />
-    <EntitySet Name="Suggestions" EntityType="DbtenderModel.Suggestions" />
     <FunctionImport Name="ss" ReturnType="Collection(DbtenderModel.ss_Result)" />
-    <EntitySet Name="ProducToTender" EntityType="DbtenderModel.ProducToTender" />
     <EntitySet Name="Tenders" EntityType="DbtenderModel.Tenders" />
+    <EntitySet Name="SuggestionDetail" EntityType="DbtenderModel.SuggestionDetail" />
+    <EntitySet Name="Login" EntityType="DbtenderModel.Login" />
+    <EntitySet Name="Suggestions" EntityType="DbtenderModel.Suggestions" />
+    <EntitySet Name="ProducToTender" EntityType="DbtenderModel.ProducToTender" />
   </EntityContainer>
-  <EntityType Name="SuggestionDetail">
-    <Key>
-      <PropertyRef Name="numDetailSuggestion" />
-    </Key>
-    <Property Name="numDetailSuggestion" Type="Int32" Nullable="false" />
-    <Property Name="numsuggest" Type="Int32" />
-    <Property Name="numproduct" Type="Int32" />
-    <Property Name="priceToProduct" Type="Int32" />
-  </EntityType>
   <EntityType Name="SiteMenu">
     <Key>
       <PropertyRef Name="ID" />
@@ -94,18 +86,6 @@
     <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ParentId" Type="Int32" Nullable="false" />
   </EntityType>
-  <EntityType Name="Suggestions">
-    <Key>
-      <PropertyRef Name="numSuggestion" />
-    </Key>
-    <Property Name="numSuggestion" Type="Int32" Nullable="false" />
-    <Property Name="numTender" Type="Int32" Nullable="false" />
-    <Property Name="numCont" Type="Int32" />
-    <Property Name="priceToproduct" Type="Int32" />
-    <Property Name="dataSuggestion" Type="DateTime" Precision="3" />
-    <Property Name="timeSuggestion" Type="Time" Precision="7" />
-    <Property Name="percentOff" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-  </EntityType>
   <ComplexType Name="ss_Result">
     <Property Type="String" Name="name" Nullable="true" MaxLength="10" />
     <Property Type="Int32" Name="numEditor" Nullable="true" />
@@ -116,18 +96,6 @@
     <Property Type="Int32" Name="phoneCont" Nullable="true" />
     <Property Type="Int32" Name="priceToProduct" Nullable="true" />
   </ComplexType>
-  <EntityType Name="ProducToTender">
-    <Key>
-      <PropertyRef Name="TenderDetailsID" />
-    </Key>
-    <Property Name="TenderDetailsID" Type="Int32" Nullable="false" />
-    <Property Name="numProduct" Type="Int32" Nullable="false" />
-    <Property Name="numTender" Type="Int32" Nullable="false" />
-    <Property Name="NameProduct" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-    <Property Name="Amount" Type="Int32" />
-    <Property Name="PriceLimit" Type="Double" />
-    <Property Name="sizeRoomy" Type="Double" />
-  </EntityType>
   <EntityType Name="Tenders">
     <Key>
       <PropertyRef Name="numTender" />
@@ -143,5 +111,51 @@
     <Property Name="till" Type="DateTime" Precision="3" />
     <Property Name="hourStart" Type="Time" Precision="7" />
     <Property Name="hourFinish" Type="Time" Precision="7" />
+    <Property Name="time_update" Type="Time" Precision="7" />
+    <Property Name="winner" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SuggestionDetail">
+    <Key>
+      <PropertyRef Name="numDetailSuggestion" />
+    </Key>
+    <Property Name="numDetailSuggestion" Type="Int32" Nullable="false" />
+    <Property Name="numsuggest" Type="Int32" />
+    <Property Name="numproduct" Type="Int32" />
+    <Property Name="priceToProduct" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="User" />
+    </Key>
+    <Property Name="User" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="numCont" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Suggestions">
+    <Key>
+      <PropertyRef Name="numSuggestion" />
+    </Key>
+    <Property Name="numSuggestion" Type="Int32" Nullable="false" />
+    <Property Name="numTender" Type="Int32" Nullable="false" />
+    <Property Name="numCont" Type="Int32" />
+    <Property Name="priceToproduct" Type="Double" />
+    <Property Name="dataSuggestion" Type="DateTime" Precision="3" />
+    <Property Name="timeSuggestion" Type="Time" Precision="7" />
+    <Property Name="percentOff" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ProducToTender">
+    <Key>
+      <PropertyRef Name="TenderDetailsID" />
+    </Key>
+    <Property Name="TenderDetailsID" Type="Int32" Nullable="false" />
+    <Property Name="numProduct" Type="Int32" Nullable="false" />
+    <Property Name="numTender" Type="Int32" Nullable="false" />
+    <Property Name="NameProduct" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="PriceLimit" Type="Double" />
+    <Property Name="sizeRoomy" Type="Double" />
+    <Property Name="weight" Type="Double" />
+    <Property Name="PriceUpdate" Type="Double" />
+    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>

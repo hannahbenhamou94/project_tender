@@ -25,5 +25,7 @@ namespace tender.Models
         public Nullable<System.DateTime> till { get; set; }
         public Nullable<System.TimeSpan> hourStart { get; set; }
         public Nullable<System.TimeSpan> hourFinish { get; set; }
+        public Nullable<System.TimeSpan> time_update { get; set; }
+        public Nullable<int> winner { get; set; }
     }
 }

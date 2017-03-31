@@ -55,6 +55,14 @@
     <Property Name="phoneEditor" Type="int" />
     <Property Name="tellOfiicEditor" Type="int" />
   </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="User" />
+    </Key>
+    <Property Name="User" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Password" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="numCont" Type="int" />
+  </EntityType>
   <EntityType Name="ProducToTender">
     <Key>
       <PropertyRef Name="TenderDetailsID" />
@@ -66,6 +74,9 @@
     <Property Name="Amount" Type="int" />
     <Property Name="PriceLimit" Type="float" />
     <Property Name="sizeRoomy" Type="float" />
+    <Property Name="weight" Type="float" />
+    <Property Name="PriceUpdate" Type="float" />
+    <Property Name="DateUpdate" Type="datetime" />
   </EntityType>
   <EntityType Name="SiteMenu">
     <Key>
@@ -92,7 +103,7 @@
     <Property Name="numSuggestion" Type="int" Nullable="false" />
     <Property Name="numTender" Type="int" Nullable="false" />
     <Property Name="numCont" Type="int" />
-    <Property Name="priceToproduct" Type="int" />
+    <Property Name="priceToproduct" Type="float" />
     <Property Name="dataSuggestion" Type="datetime" />
     <Property Name="timeSuggestion" Type="time" Precision="7" />
     <Property Name="percentOff" Type="nchar" MaxLength="10" />
@@ -112,6 +123,8 @@
     <Property Name="till" Type="datetime" />
     <Property Name="hourStart" Type="time" Precision="7" />
     <Property Name="hourFinish" Type="time" Precision="7" />
+    <Property Name="time_update" Type="time" Precision="7" />
+    <Property Name="winner" Type="int" />
   </EntityType>
   <EntityType Name="TypeTender">
     <Key>
@@ -126,6 +139,7 @@
     <EntitySet Name="Contestants" EntityType="Self.Contestants" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConToTender" EntityType="Self.ConToTender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Editors" EntityType="Self.Editors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProducToTender" EntityType="Self.ProducToTender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SiteMenu" EntityType="Self.SiteMenu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SuggestionDetail" EntityType="Self.SuggestionDetail" Schema="dbo" store:Type="Tables" />

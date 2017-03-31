@@ -26,5 +26,36 @@ namespace tender.Controllers
             }
             return new JsonResult { Data = con, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
+
+        public JsonResult save(List<ConToTender> ct)
+        {
+            bool status = false;
+
+
+            var isValidModel = TryUpdateModel(ct);
+            if (isValidModel)
+            {
+                using (DbtenderEntities1 DB = new DbtenderEntities1())
+                {
+                    foreach (var item in ct)
+                    {
+                        DB.ConToTender.Add(item);
+                    }
+
+
+                    try
+                    {
+                        DB.SaveChanges();
+                    }
+                    catch (Exception)
+                    {
+                    }
+
+                    status = true;
+                }
+            }
+            return new JsonResult { Data = new { status = status } };
+        }
     }
 }
