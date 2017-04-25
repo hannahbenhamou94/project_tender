@@ -27,5 +27,6 @@ namespace tender.Models
         public Nullable<System.TimeSpan> hourFinish { get; set; }
         public Nullable<System.TimeSpan> time_update { get; set; }
         public Nullable<int> winner { get; set; }
+        public Nullable<int> numSugestion { get; set; }
     }
 }

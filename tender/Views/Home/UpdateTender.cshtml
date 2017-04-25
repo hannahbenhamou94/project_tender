@@ -1,6 +1,4 @@
-﻿
-
-<div ng-app="MyApp">
+﻿<div ng-app="MyApp">
     <div ng-controller="menuController">
         @* Here first of all we will create a ng-template *@
         <script type="text/ng-template" id="treeMenu">
@@ -15,8 +13,6 @@
             @* Here we will load only top level menu *@
             @*<li ng-repeat="menu in SiteMenu | filter:{ParentIf : 0}" ng-include="'treeMenu'"></li>*@
             <li ng-repeat="menu in SiteMenu | filter:{ParentId : 0} : true" ng-include="'treeMenu'"></li>
-            <li style="margin-left:34.15%"><img src="~/Images/logo1.png" width="100" /></li>
-
         </ul>
     </div>
 </div>
@@ -52,7 +48,7 @@
                 </td>
                 <td> Tender Name </td>
                 <td>
-                    <input type="text" id="tenderName" class="form-control" value="מחשבים" />
+                    <input type="text" id="tenderName" class="form-control" value="" />
                     <span class="error">Tender no required</span>
                 </td>
             </tr>
@@ -76,7 +72,9 @@
                 <td>typem tender</td>
                 <td>
                     <select id="typeTender" class="form-control" onselect="LoadType(this)">
-                        <option>Select</option>
+                        <option value="1">הולנדי</option>
+                        <option value="2">אנגלי</option>
+                        
                     </select>
                     <span class="error">Select type Tender</span>
                 </td>
@@ -121,7 +119,7 @@
                     <span class="error">Valid till required (ex: MM-dd-yyyy)</span>
                 </td>
             </tr>
-            <tr>
+            @*<tr>
                 <td>hour strat</td>
                 <td>
                     <input type="text" id="start" />
@@ -131,7 +129,7 @@
                 <td>
                     <input type="text" id="finish" />
                 </td>
-            </tr>
+            </tr>*@
         </table>
     </div>
     <div class="details">

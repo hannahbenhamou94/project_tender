@@ -29,6 +29,131 @@ namespace tender.Controllers
             return View();
         }
 
+        public JsonResult LoadDate(int numtender)
+        {
+            List<SuggestionDetail> suggestionDetail = new List<SuggestionDetail>();
+
+            int t2 = getSuggestionsMax(numtender);
+
+            DbtenderEntities1 DB = new DbtenderEntities1();
+
+            var result = from t in DB.Tenders
+                         join s in DB.Suggestions on t.numTender equals s.numTender
+                         where t.numTender == numtender
+                         where s.numSuggestion == t2
+                         select new { t.time_update, s.dataSuggestion };
+
+            return Json(result.ToList(), JsonRequestBehavior.AllowGet);
+
+
+        }
+
+
+
+        public int checkHolland(ConToTender con)
+        {
+            int numtender = Convert.ToInt32(con.numTender);
+            try
+            {
+                using (DbtenderEntities1 DB = new DbtenderEntities1())
+                {
+                    var tender = DB.Tenders.Find(Convert.ToInt32(numtender));
+                    if (tender == null)
+                        return -1;
+
+                    else if (tender.numType != 2)
+                        return -1;
+
+                }
+            }
+
+            catch (Exception) { }
+
+            List<ConToTender> cont = new List<ConToTender>();
+            using (DbtenderEntities1 DB = new DbtenderEntities1())
+            {
+                cont = DB.ConToTender.Where(a => a.numTender.Value.Equals(numtender)).OrderBy(a => a.numCon).ToList();
+            }
+            //  return Json(ProducToTender, JsonRequestBehavior.AllowGet);
+            if (cont != null)
+            {
+                try
+
+
+                {
+                    foreach (var item in cont)
+                    {
+
+                        using (DbtenderEntities1 DB = new DbtenderEntities1())
+                        {
+                            if (item.numCon == con.numCon)
+                                return 2;
+                        }
+                    }
+                    return 0;
+                }
+
+
+                catch (Exception) { }
+            }
+
+            return 0;
+
+
+        }
+
+        public int checkEnglish(ConToTender con)
+        {
+            int numtender = Convert.ToInt32(con.numTender);
+            try
+            {
+                using (DbtenderEntities1 DB = new DbtenderEntities1())
+                {
+                    var tender = DB.Tenders.Find(Convert.ToInt32(numtender));
+                    if (tender == null)
+                        return -1;
+
+                    else if (tender.numType != 1)
+                        return -1;
+
+
+                }
+            }
+
+            catch (Exception) { }
+
+            List<ConToTender> cont = new List<ConToTender>();
+            using (DbtenderEntities1 DB = new DbtenderEntities1())
+            {
+                cont = DB.ConToTender.Where(a => a.numTender.Value.Equals(numtender)).OrderBy(a => a.numCon).ToList();
+            }
+            //  return Json(ProducToTender, JsonRequestBehavior.AllowGet);
+            if (cont != null)
+            {
+                try
+
+
+                {
+                    foreach (var item in cont)
+                    {
+
+                        using (DbtenderEntities1 DB = new DbtenderEntities1())
+                        {
+                            if (item.numCon == con.numCon)
+                                return 2;
+                        }
+                    }
+                    return 0;
+                }
+
+
+                catch (Exception) { }
+            }
+
+            return 0;
+
+
+        }
         public ActionResult stopTender(string numTender)
         {
 
@@ -44,17 +169,58 @@ namespace tender.Controllers
             catch (Exception) { }
             return View();
         }
-        public ActionResult updateTender(Tenders t)
-        {
 
+
+        public ActionResult stopEnglishTender(int numTender)
+        {
+            int d = getSuggestionsMax(numTender);
+            List<Suggestions> suggestion = new List<Suggestions>();
+            using (DbtenderEntities1 DB = new DbtenderEntities1())
+            {
+                suggestion = DB.Suggestions.Where(a => a.numSuggestion.Equals(d)).OrderBy(a => a.numSuggestion).ToList();
+            }
+
+            try
+            {
+                using (DbtenderEntities1 DB = new DbtenderEntities1())
+                {
+                    var tender = DB.Tenders.Find(Convert.ToInt32(numTender));
+                    tender.status = "סגור";
+                    tender.winner = suggestion[0].numCont;
+                    tender.numSugestion = suggestion[0].numSuggestion;
+                    DB.SaveChanges();
+                }
+            }
+            catch (Exception) { }
+            return View();
+        }
+        public ActionResult updateTender(Suggestions t)
+        {
+            int num = findLastSuggest2();
+            Suggestions s2 = t;
+            t.numSuggestion = num;
+            t.dataSuggestion = DateTime.Now;
+
+            using (DbtenderEntities1 DB1 = new DbtenderEntities1())
+            {
+
+
+                DB1.Suggestions.Add(s2);
+                try
+                {
+                    DB1.SaveChanges();
+                }
+                catch { }
+            }
             try
             {
                 using (DbtenderEntities1 DB = new DbtenderEntities1())
                 {
                     var tender = DB.Tenders.Find(Convert.ToInt32(t.numTender));
                     tender.status = "סגור";
-                    tender.winner = t.winner;
-                    tender.till = t.till;
+                    tender.winner = t.numCont;
+                    tender.till = t.dataSuggestion;
+                    tender.numSugestion = num;
                     DB.SaveChanges();
                 }
             }
@@ -172,33 +338,58 @@ namespace tender.Controllers
             }
             foreach (var item in Tender)
             {
-                if((item.status).Contains(("סגור")))
-                 return Json("close", JsonRequestBehavior.AllowGet);
+                if ((item.status).Contains(("סגור")))
+                    return Json("close", JsonRequestBehavior.AllowGet);
 
             }
-            
-             
+
+
             return Json(Tender, JsonRequestBehavior.AllowGet);
 
         }
-        public ActionResult getProduct(int numTender)
+
+
+        public ActionResult getProduct2(int numTender)
         {
-            int max = getSuggestionsMax(numTender);
+
             DbtenderEntities1 DB = new DbtenderEntities1();
 
 
-            var result = from s in DB.SuggestionDetail
-                         join p in DB.ProducToTender on s.numproduct equals p.numProduct
-                         join s1 in DB.Suggestions on s.numsuggest equals s1.numSuggestion
+            var result = from t in DB.Tenders
+                         join p in DB.ProducToTender on t.numTender equals p.numTender
 
-                         join t in DB.Tenders on p.numTender equals t.numTender
                          where p.numTender == numTender
-                         where s.numsuggest == max
-                         where p.numProduct == s.numproduct
-                         select new { s.priceToProduct, s.numproduct, p.sizeRoomy,p.Amount,p.NameProduct,p.weight,t.hourFinish ,t.till,s1.timeSuggestion,s1.dataSuggestion};
+                         select new { p.sizeRoomy, p.Amount, p.NameProduct, p.weight, t.@from, p.PriceUpdate, p.numProduct };
 
             return Json(result.Distinct().ToList(), JsonRequestBehavior.AllowGet);
 
+        }
+
+        public ActionResult getProduct(int numTender)
+        {
+            int max = getSuggestionsMax(numTender);
+            if (max == 0)
+            {
+                return null;
+            }
+            else
+            {
+                DbtenderEntities1 DB = new DbtenderEntities1();
+
+
+                var result = from s in DB.SuggestionDetail
+                             join p in DB.ProducToTender on s.numproduct equals p.numProduct
+                             join s1 in DB.Suggestions on s.numsuggest equals s1.numSuggestion
+
+                             join t in DB.Tenders on p.numTender equals t.numTender
+                             where p.numTender == numTender
+                             where s.numsuggest == max
+                             where p.numProduct == s.numproduct
+                             select new { s.priceToProduct, s.numproduct, p.sizeRoomy, p.Amount, p.NameProduct, p.weight, t.hourFinish, t.till, s1.timeSuggestion, s1.dataSuggestion };
+
+                return Json(result.Distinct().ToList(), JsonRequestBehavior.AllowGet);
+
+            }
         }
         public ActionResult getType(int numType)
         {
@@ -318,7 +509,7 @@ namespace tender.Controllers
             List<Suggestions> suggestion = new List<Suggestions>();
             DbtenderEntities1 DB1 = new DbtenderEntities1();
 
-          
+
 
             //return View();
             using (DbtenderEntities1 DB = new DbtenderEntities1())
@@ -355,7 +546,7 @@ namespace tender.Controllers
         }
         public ActionResult findLastDetail()
         {
-     
+
             int num = 0;
             DbtenderEntities1 DB = new DbtenderEntities1();
 
@@ -426,7 +617,7 @@ namespace tender.Controllers
         public JsonResult save(Suggestions s1)
         {
             //  List<Suggestions> s2 = new List<Suggestions>();
-           Suggestions s2;
+            Suggestions s2;
             s2 = s1;
             //s2.numSuggestion = 0;
             //s2.numTender = 0;
@@ -439,22 +630,22 @@ namespace tender.Controllers
             //var isValidModel = TryUpdateModel(s2);
             //if (isValidModel)
             //{
-                using (DbtenderEntities1 DB = new DbtenderEntities1())
+            using (DbtenderEntities1 DB = new DbtenderEntities1())
+            {
+
+
+                DB.Suggestions.Add(s2);
+                try
                 {
-
-
-                    DB.Suggestions.Add(s2);
-                    try
-                    {
-                        DB.SaveChanges();
-                    }
-                    catch (Exception)
-                    {
-                    }
-
-                    status = true;
+                    DB.SaveChanges();
                 }
-        //    }
+                catch (Exception)
+                {
+                }
+
+                status = true;
+            }
+            //    }
             return new JsonResult { Data = new { status = status } };
         }
 
@@ -469,12 +660,21 @@ namespace tender.Controllers
             return Json(num, JsonRequestBehavior.AllowGet);
 
         }
+        public int findLastSuggest2()
+        {
+            int num = 0;
+            DbtenderEntities1 DB = new DbtenderEntities1();
 
+            List<Suggestions> result = DB.Suggestions.ToList();
+            num = result.Count + 1;
+
+            return num;
+        }
 
 
         public JsonResult getSuggestionMax(int numTender)
         {
- 
+
             int max = 0;
             int convertMax;
             List<Suggestions> suggestion = new List<Suggestions>();
@@ -494,7 +694,7 @@ namespace tender.Controllers
             {
                 suggestion = DB.Suggestions.Where(a => a.numTender.Equals(numTender)).OrderBy(a => a.numTender).ToList();
             }
-             if (suggestion != null)
+            if (suggestion != null)
             {
                 try
 
@@ -515,20 +715,35 @@ namespace tender.Controllers
                 catch (Exception) { }
 
             }
+            if (max == 0)
+            {
+                var result2 = from t in DB1.Tenders
+                              join p in DB1.ProducToTender on t.numTender equals p.numTender
+                              where p.numTender == numTender
+                         
+                              select new { p.numProduct, p.weight, p.PriceUpdate };
 
-         
-            var result = from s in DB1.SuggestionDetail
-                         join p in DB1.ProducToTender on s.numproduct equals p.numProduct
-                         where p.numTender==numTender
-                          where  s.numsuggest == max 
-                          where p.numProduct==s.numproduct
-                         select new {  s.priceToProduct, s.numproduct, p.sizeRoomy ,p.weight};
 
-            return Json(result.Distinct().ToList(), JsonRequestBehavior.AllowGet);
+                return Json(result2.Distinct().ToList(), JsonRequestBehavior.AllowGet);
 
+            }
+        
+            else
+            {
+                var result = from s in DB1.SuggestionDetail
+                             join p in DB1.ProducToTender on s.numproduct equals p.numProduct
+                             where p.numTender == numTender
+                             where s.numsuggest == max
+                             where p.numProduct == s.numproduct
+                             select new { s.priceToProduct, s.numproduct, p.sizeRoomy, p.weight };
+
+
+                return Json(result.Distinct().ToList(), JsonRequestBehavior.AllowGet);
+
+            
         }
 
- 
+ }
 
 
 

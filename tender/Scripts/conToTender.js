@@ -88,6 +88,10 @@ $(document).ready(function () {
                 contentType: 'application/json',
                 success: function (data) {
                     if (data.status) {
+                        url = window.location.href;
+
+                        window.location.href = url;
+
                      //   alert('Successfully saved');
                         //here we will clear the form
                         list = [];

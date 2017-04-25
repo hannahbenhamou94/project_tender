@@ -1,14 +1,14 @@
 ﻿var prices = [];
 var url = null;
-var sRommy = [];
+var Amount = [];
 var numproduct = [];
 var myvar;
 var flag = 0;
 var cell1 = [];
 var cell2 = [];
 var cell3 = [];
-var numCont=1;
-
+var numCont = localStorage["user"];
+var total = 0;
 function time(x, time) {
     var diff = (time - x) * 1000;
     //   alert(diff+" diff");
@@ -17,9 +17,52 @@ function time(x, time) {
     }, diff);
     timeInterval(time);
 }
+function checkTender()
+{
+    var u = "http://localhost:14962/Login/Login";
+    if (localStorage["user"] == undefined)
+        window.location.href = u;
+    ///cookie
+     if (!url) {
+        url = window.location.href;
+        url = url.substr(url.indexOf('=') + 1);
+    }
+    var conTo = {
+        numCon: numCont,
+        numTender: url,  
+    }
 
+    //         alert(suggestionDetail);
+    $.ajax({
+        type: 'POST',
+        url: '/Suggestions/checkHolland',
+        data: JSON.stringify(conTo),
+        contentType: 'application/json',
+        success: function (data) {
+            if(data==0)
+            {
+                document.getElementById("dd").innerHTML = "אין לך הרשאות למכרז אנא פנה לעורך המכרז";
+
+            }
+            else if (data == -1) {
+                document.getElementById("dd").innerHTML = "המכרז לא קיים";
+            }
+        },
+        error: function (error) {
+            console.log(error);
+
+        }
+    });
+
+
+
+}
 function timeInterval(time) {
- 
+    if (!url) {
+        url = window.location.href;
+        url = url.substr(url.indexOf('=') + 1);
+    }
+
     var setTime = time * 1000;
     //  alert(time + " time timer");
     setInterval(function () {
@@ -33,8 +76,9 @@ function timeInterval(time) {
                 console.log(error);
             }
         })
-        LoadAgain();
-    }, (120000));
+        window.location.href = url;
+       // LoadAgain();
+    }, (time));
 }
 
 
@@ -115,6 +159,7 @@ function LoadAgain() {
     })
 }
 
+
 function renderAgain(data) {
     //  alert("again");
 
@@ -185,7 +230,9 @@ function renderDTender(data) {
         cell1.innerHTML = v.NameProduct;
         cell2.innerHTML = v.PriceUpdate;
         cell3.innerHTML = v.Amount;
+        total += v.PriceUpdate * v.Amount;
     })
+   // alert(total);
 }
 
 
@@ -266,19 +313,20 @@ function stopTender() {
         }
     })
 }
-
-
+ 
 $(document).ready(function () {
     //Add button click event
     $('#stop').click(function () {
             url = window.location.href;
             url = url.substr(url.indexOf('=') + 1);
-
-               var tender =
+       
+            var tender =
        {
+            numSuggestion:0,
             numTender:url,
-            winner: numCont,
-            till:new Date(),
+            numCont: numCont,
+            dataSuggestion: new Date(),
+            priceToproduct:total,
          }
         $.ajax({
             type: 'POST',
@@ -315,4 +363,6 @@ $(document).ready(function () {
 
     })//button 
 });
+
+checkTender();
 LoadDTender();

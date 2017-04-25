@@ -62,11 +62,11 @@
     <EntitySet Name="SiteMenu" EntityType="DbtenderModel.SiteMenu" />
     <EntitySet Name="ClientMenu" EntityType="DbtenderModel.ClientMenu" />
     <FunctionImport Name="ss" ReturnType="Collection(DbtenderModel.ss_Result)" />
-    <EntitySet Name="Tenders" EntityType="DbtenderModel.Tenders" />
     <EntitySet Name="SuggestionDetail" EntityType="DbtenderModel.SuggestionDetail" />
     <EntitySet Name="Login" EntityType="DbtenderModel.Login" />
     <EntitySet Name="Suggestions" EntityType="DbtenderModel.Suggestions" />
     <EntitySet Name="ProducToTender" EntityType="DbtenderModel.ProducToTender" />
+    <EntitySet Name="Tenders" EntityType="DbtenderModel.Tenders" />
   </EntityContainer>
   <EntityType Name="SiteMenu">
     <Key>
@@ -96,24 +96,6 @@
     <Property Type="Int32" Name="phoneCont" Nullable="true" />
     <Property Type="Int32" Name="priceToProduct" Nullable="true" />
   </ComplexType>
-  <EntityType Name="Tenders">
-    <Key>
-      <PropertyRef Name="numTender" />
-    </Key>
-    <Property Name="numTender" Type="Int32" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-    <Property Name="numType" Type="Int32" />
-    <Property Name="numEditor" Type="Int32" />
-    <Property Name="codCategory" Type="Int32" />
-    <Property Name="typeAcquire" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="from" Type="DateTime" Precision="3" />
-    <Property Name="till" Type="DateTime" Precision="3" />
-    <Property Name="hourStart" Type="Time" Precision="7" />
-    <Property Name="hourFinish" Type="Time" Precision="7" />
-    <Property Name="time_update" Type="Time" Precision="7" />
-    <Property Name="winner" Type="Int32" />
-  </EntityType>
   <EntityType Name="SuggestionDetail">
     <Key>
       <PropertyRef Name="numDetailSuggestion" />
@@ -157,5 +139,24 @@
     <Property Name="weight" Type="Double" />
     <Property Name="PriceUpdate" Type="Double" />
     <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Tenders">
+    <Key>
+      <PropertyRef Name="numTender" />
+    </Key>
+    <Property Name="numTender" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="numType" Type="Int32" />
+    <Property Name="numEditor" Type="Int32" />
+    <Property Name="codCategory" Type="Int32" />
+    <Property Name="typeAcquire" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="from" Type="DateTime" Precision="3" />
+    <Property Name="till" Type="DateTime" Precision="3" />
+    <Property Name="hourStart" Type="Time" Precision="7" />
+    <Property Name="hourFinish" Type="Time" Precision="7" />
+    <Property Name="time_update" Type="Time" Precision="7" />
+    <Property Name="winner" Type="Int32" />
+    <Property Name="numSugestion" Type="Int32" />
   </EntityType>
 </Schema>

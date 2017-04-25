@@ -12,11 +12,11 @@
         <EntityTypeShape EntityType="DbtenderModel.TypeTender" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DbtenderModel.SiteMenu" Width="1.5" PointX="9.375" PointY="0.75" />
         <EntityTypeShape EntityType="DbtenderModel.ClientMenu" Width="1.5" PointX="9.25" PointY="7.375" />
-        <EntityTypeShape EntityType="DbtenderModel.Tenders" Width="1.5" PointX="2.75" PointY="10.75" />
         <EntityTypeShape EntityType="DbtenderModel.SuggestionDetail" Width="1.5" PointX="7.375" PointY="3.75" />
         <EntityTypeShape EntityType="DbtenderModel.Login" Width="1.5" PointX="5.375" PointY="7.75" />
         <EntityTypeShape EntityType="DbtenderModel.Suggestions" Width="1.5" PointX="9.375" PointY="3.75" />
         <EntityTypeShape EntityType="DbtenderModel.ProducToTender" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="DbtenderModel.Tenders" Width="1.5" PointX="0.75" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

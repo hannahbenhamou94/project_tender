@@ -2,12 +2,23 @@
 //var url = null;
 ////var x = document.cookie;
 ////function LoadUser(){
-//    user = document.cookie;
-//    // user = $.cookie("user")
-//    alert("cookie");
-//    alert(user+" user");
-//    alert(user.split("=")[1]);
+     // user = $.cookie("user")
 
+   
+//function checkTenders() {
+
+//    $.ajax({
+//        type: "POST",
+//        url: "/Client/checkTenders",
+//        complete: function () {
+//            ///alert("sucess");
+//            LoadDTender();
+//         },
+//        error: function (error) {
+//            console.log(error);
+//        }
+//    })
+//}
 function LoadDTender() {
 
     $.ajax({
@@ -116,7 +127,7 @@ function myFunction() {
         }
     }
 }
-
+//checkTenders();
 LoadDTender();
 
 

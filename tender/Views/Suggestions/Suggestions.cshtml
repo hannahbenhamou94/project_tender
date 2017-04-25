@@ -39,47 +39,46 @@
 <script src="~/Scripts/Suggestions.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link href="~/css/jquery-ui.css" rel="stylesheet" />
-     <div id="dd" class="details">
+<div id="dd" class="details">
+    <h2>פירוט המכרז</h2>
 
-        <h2>פירוט המכרז</h2>
+    <label id="numTender"></label>
+    <table class="table table-responsive" id="tbldtender">
+        <tr class="mycontainer" id="mainrow">
+        <tr>
+            @*<td><h1>num tender</h1></td>
+                <td><h1>name tender</h1></td>*@
+        </tr>
+    </table>
+    <table class="table table-responsive" id="tblsuggest">
+        <tr class="mycontainer" id="mainrow">
+            <td> NumProduct</td>
+            <td>Product</td>
+            <td>Quantity</td>
+            <td>Minimum price</td>
+            <td>Weight</td>
+            <td>Last Update</td>
+            <td>Suggestion price</td>
+            <td>&nbsp;</td>
+        </tr>
 
-        <label id="numTender"></label>
-        <table class="table table-responsive" id="tbldtender">
-            <tr class="mycontainer" id="mainrow">
-            <tr>
-                @*<td><h1>num tender</h1></td>
-                    <td><h1>name tender</h1></td>*@
-            </tr>
-        </table>
-        <table class="table table-responsive" id="tblsuggest">
-            <tr class="mycontainer" id="mainrow">
-                <td> NumProduct</td>
-                <td>Product</td>
-                <td>Quantity</td>
-                <td>Minimum price</td>
-                <td>Weight</td>
-                <td>Last Update</td>
-                <td>Suggestion price</td>
-                <td>&nbsp;</td>
-            </tr>
-
-        </table>
-        <div id="LastDetail"></div>
-        <div id="LastSuggest"></div>
-        <div id="avg"> </div>
-        <div id="dateNow"> </div>
+    </table>
+    <div id="LastDetail"></div>
+    <div id="LastSuggest"></div>
+    <div id="avg"> </div>
+    <div id="dateNow"> </div>
 
 
-        <div id="orderItems">
-            <table class="table table-responsive" id="orderdetailsItems"></table>
-            <span id="orderItemError" style="color:red">
-                <label id="error" label />
-            </span>
-        </div>
-        <div style="padding:10px 0; text-align:right">
-            <input id="submit" type="button" value="Save" class="btn btn-warning" style="padding:10px 20px" onclick="clickAndDisable()">
-        </div>
+    <div id="orderItems">
+        <table class="table table-responsive" id="orderdetailsItems"></table>
+        <span id="orderItemError" style="color:red">
+            <label id="error" label />
+        </span>
     </div>
+    <div style="padding:10px 0; text-align:right">
+        <input id="submit" type="button" value="Save" class="btn btn-warning" style="padding:10px 20px" onclick="clickAndDisable()">
+    </div>
+</div>
 <link href="~/css/jquery-ui.css" rel="stylesheet" />
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/bootstrap.css" rel="stylesheet" />

@@ -13,19 +13,24 @@
             url: '/home/log',
             data: data,
             success: function (data) {
-                num = data;
-                document.cookie = "user=" + num;
-                if (num != -1) {
+                if (data == -1) 
                     alert("the user is not exist ");
+                else
+                {   
+                    document.cookie = "user=" + data;
+                    window.location.href = '/Home/MyTenders';
+
+                }
+             
+           
                     //$.ajax({
                     //    type: "GET",
                     //    url: '/home/Add_Tender'
                         
                     //});
-                    window.location.href ='/Home/MyTenders';
                 }
 
-            }
+            
         });
 
   

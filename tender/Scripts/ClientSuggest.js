@@ -1,4 +1,44 @@
 ﻿var url = null;
+
+var numCont = localStorage["user"];
+
+function checkTender() {
+    ///cookie
+     if (!url) {
+        url = window.location.href;
+        url = url.substr(url.indexOf('=') + 1);
+    }
+    var conTo = {
+        numCon: numCont,
+        numTender: url,
+    }
+
+    //         alert(suggestionDetail);
+    $.ajax({
+        type: 'POST',
+        url: '/Client/checkSuggestion',
+        data: JSON.stringify(conTo),
+        contentType: 'application/json',
+        success: function (data) {
+            if (data == 0) {
+                document.getElementById("dd").innerHTML = "אין לך הרשאות למכרז אנא פנה לעורך המכרז";
+
+            }
+            else if (data == -1) {
+                document.getElementById("dd").innerHTML = "המכרז לא קיים";
+            }
+        },
+        error: function (error) {
+            console.log(error);
+
+        }
+    });
+
+
+
+}
+
+
 function LoadDTender() {
     if (!url) {
         url = window.location.href;
@@ -90,6 +130,8 @@ function myFunction() {
         }
     }
 }
+checkTender();
+
 LoadDTender();
 
 

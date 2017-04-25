@@ -23,14 +23,10 @@ function clicki()
              //here we will clear the for
             if (data != -1)
             {
-             ///   alert(data);
+                alert(data);
                 //document.cookie = "user=" + data;
-                //user = document.cookie;
-                //// user = $.cookie("user")
-                //alert("cookie");
-                //alert(user + " user");
-                //alert(user.split("=")[1]);
-                 window.location.href = '/Client';
+                localStorage["user"] = data;
+                 window.location.href = '/Client/Tenders';
 
             }
              if (data == -1)

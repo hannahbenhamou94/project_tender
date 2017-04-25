@@ -79,25 +79,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tenders">
-      <EntityTypeMapping TypeName="DbtenderModel.Tenders">
-        <MappingFragment StoreEntitySet="Tenders">
-          <ScalarProperty Name="winner" ColumnName="winner" />
-          <ScalarProperty Name="time_update" ColumnName="time_update" />
-          <ScalarProperty Name="hourFinish" ColumnName="hourFinish" />
-          <ScalarProperty Name="hourStart" ColumnName="hourStart" />
-          <ScalarProperty Name="till" ColumnName="till" />
-          <ScalarProperty Name="from" ColumnName="from" />
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="typeAcquire" ColumnName="typeAcquire" />
-          <ScalarProperty Name="codCategory" ColumnName="codCategory" />
-          <ScalarProperty Name="numEditor" ColumnName="numEditor" />
-          <ScalarProperty Name="numType" ColumnName="numType" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="numTender" ColumnName="numTender" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SuggestionDetail">
       <EntityTypeMapping TypeName="DbtenderModel.SuggestionDetail">
         <MappingFragment StoreEntitySet="SuggestionDetail">
@@ -143,6 +124,26 @@
           <ScalarProperty Name="numTender" ColumnName="numTender" />
           <ScalarProperty Name="numProduct" ColumnName="numProduct" />
           <ScalarProperty Name="TenderDetailsID" ColumnName="TenderDetailsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tenders">
+      <EntityTypeMapping TypeName="DbtenderModel.Tenders">
+        <MappingFragment StoreEntitySet="Tenders">
+          <ScalarProperty Name="numSugestion" ColumnName="numSugestion" />
+          <ScalarProperty Name="winner" ColumnName="winner" />
+          <ScalarProperty Name="time_update" ColumnName="time_update" />
+          <ScalarProperty Name="hourFinish" ColumnName="hourFinish" />
+          <ScalarProperty Name="hourStart" ColumnName="hourStart" />
+          <ScalarProperty Name="till" ColumnName="till" />
+          <ScalarProperty Name="from" ColumnName="from" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="typeAcquire" ColumnName="typeAcquire" />
+          <ScalarProperty Name="codCategory" ColumnName="codCategory" />
+          <ScalarProperty Name="numEditor" ColumnName="numEditor" />
+          <ScalarProperty Name="numType" ColumnName="numType" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="numTender" ColumnName="numTender" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -107,29 +107,90 @@ namespace tender.Controllers
             return View(TypeTender);
 
         }
-        public ActionResult getWinner()
+        public ActionResult getWinners()
         {
+           //  var []=new s[];
+             List<DbtenderEntities1> l = new List<DbtenderEntities1>();
+            List<Tenders> tenders = new List<Tenders>();
+            using (DbtenderEntities1 DB = new DbtenderEntities1())
+            {
+                tenders = DB.Tenders.Where(a => a.status.Contains("סגור")).OrderBy(a => a.numTender).ToList();
+            }
+            //  return Json(ProducToTender, JsonRequestBehavior.AllowGet);
+            if (tenders != null)
+            {
+                
+                    
 
-            //if (Request.QueryString["id"] == null)
-            //    return View();
-            //int id = Convert.ToInt32(Request.QueryString["id"]);
-            DbtenderEntities1 DB = new DbtenderEntities1();
+                        using (DbtenderEntities1 DB2 = new DbtenderEntities1())
+                        {
+                         //   int d = getSuggestionsMax(item.numTender);
 
-            var result = from c in DB.Categories
-                         join t in DB.Tenders on c.codeCategory equals t.codCategory
-                         join s in DB.Suggestions on t.numTender equals s.numTender
-                         join co in DB.Contestants on s.numCont equals co.numCon
-                         join ty in DB.TypeTender on t.numType equals ty.numType
-                         where t.winner==co.numCon
-                        where t.status.Contains("סגור")
-                         orderby t.name
-                         select new {ty.nameType,t.winner, t.name, c.nameCategory, s.dataSuggestion, s.priceToproduct, co.nameCompanyCont, co.nameCont,co.familyCont,t.numTender};
+                            //if (Request.QueryString["id"] == null)
+                            //    return View();
+                            //int id = Convert.ToInt32(Request.QueryString["id"]);
+                            DbtenderEntities1 DB = new DbtenderEntities1();
+
+                         var result= from c in DB.Categories
+                                         join t in DB.Tenders on c.codeCategory equals t.codCategory
+                                         join s in DB.Suggestions on t.numSugestion equals s.numSuggestion
+                                         join co in DB.Contestants on t.winner equals co.numCon
+                                         join ty in DB.TypeTender on t.numType equals ty.numType
+                                         //   where t.winner==co.numCon
+                                         orderby t.name
+                                         select new { ty.nameType, t.winner,t.@from,t.till,t.name, c.nameCategory, s.dataSuggestion, s.priceToproduct, co.nameCompanyCont, co.nameCont, co.familyCont, t.numTender };
+                        return Json(result.Distinct().ToList(), JsonRequestBehavior.AllowGet);
+
+
+                                   }
+
+        }
+                            return new JsonResult { Data = null, JsonRequestBehavior = JsonRequestBehavior.AllowGet
+    };
+
+
+}
+public int getSuggestionsMax(int numTender)
+        {
+            int max = 0;
+            int convertMax;
+            List<Suggestions> suggestion = new List<Suggestions>();
+            DbtenderEntities1 DB1 = new DbtenderEntities1();
+
 
 
             //return View();
+            using (DbtenderEntities1 DB = new DbtenderEntities1())
+            {
+                suggestion = DB.Suggestions.Where(a => a.numTender.Equals(numTender)).OrderBy(a => a.numTender).ToList();
+            }
+            if (suggestion != null)
+            {
+                try
 
-            return Json(result.Distinct().ToList(), JsonRequestBehavior.AllowGet);
+                {
+                    foreach (var item in suggestion)
+                    {
 
+                        using (DbtenderEntities1 DB = new DbtenderEntities1())
+                        {
+                            var numSuggestion = DB.Suggestions.Find((item.numSuggestion));
+                            //   var tender = DB.Suggestions.Find((item.numTender));
+                            convertMax = Convert.ToInt32(numSuggestion.numSuggestion);
+                            if (convertMax > max)
+                                max = convertMax;
+                        }
+                    }
+                }
+                catch (Exception) { }
+
+            }
+            //using (DbtenderEntities1 DB = new DbtenderEntities1())
+            //{
+            //    suggestionDetail = DB.SuggestionDetail.Where(a => a.numsuggest.Equals(max)).OrderBy(a => a.numDetailSuggestion).ToList();
+            //}
+            ////  retu
+            return max;
         }
         public ActionResult getSuggestion(int numTender)
         {
@@ -280,17 +341,18 @@ namespace tender.Controllers
             DateTime dateOrgF;
             DateTime dateOrgT;
             var isValidDateFrom = DateTime.TryParseExact(Tenders.from.ToString(), "mm-dd-yyyy", null, System.Globalization.DateTimeStyles.None, out dateOrgF);
-            if (isValidDateFrom)
-            {
-                Tenders.from = dateOrgF;
-            }
+            //if (isValidDateFrom)
+            //{
+                //Tenders.from = dateOrgF;
+            //}
             var isValidDateTill = DateTime.TryParseExact(Tenders.till.ToString(), "mm-dd-yyyy", null, System.Globalization.DateTimeStyles.None, out dateOrgT);
-            if (isValidDateTill)
-            {
-                Tenders.from = dateOrgT;
-            }
+            //if (isValidDateTill)
+            //{
+               // Tenders.from = dateOrgT;
+            //}
 
-            var isValidModel = TryUpdateModel(Tenders);
+            //var isValidModel = TryUpdateModel(Tenders);
+            var isValidModel = true;
             if (isValidModel)
             {
                 using (DbtenderEntities1 DB = new DbtenderEntities1())
@@ -483,8 +545,8 @@ namespace tender.Controllers
            int TenderDetail = findTenderDetail();
              bool status = false;
             var isValidModel = true;
-            if (isValidModel)
-            {
+            //if (isValidModel)
+            //{
                 using (DbtenderEntities1 DB = new DbtenderEntities1())
                 {
                     foreach (var item in pt)
@@ -506,7 +568,7 @@ namespace tender.Controllers
 
 
                 }
-            }
+         //   }
             return new JsonResult { Data = new { status = status } };
         }
 

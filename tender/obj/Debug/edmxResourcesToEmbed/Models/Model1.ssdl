@@ -125,6 +125,7 @@
     <Property Name="hourFinish" Type="time" Precision="7" />
     <Property Name="time_update" Type="time" Precision="7" />
     <Property Name="winner" Type="int" />
+    <Property Name="numSugestion" Type="int" />
   </EntityType>
   <EntityType Name="TypeTender">
     <Key>

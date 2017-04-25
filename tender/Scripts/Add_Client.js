@@ -52,6 +52,10 @@ $(document).ready(function () {
 
                     $('#numCon,#nameCont,#familyCont,#nameCompanyCont,#Seniority,#adressCont,#phoneCont,#tellOfficeCont,#emailCont,#area').val('');
                     location.reload();
+                         url = window.location.href;
+                        url = url.substr(url.indexOf('=') + 1);
+                        window.location.href = url;
+
 
                 }
                 //else {

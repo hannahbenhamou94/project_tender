@@ -27,20 +27,33 @@ namespace tender.Controllers
             return new JsonResult { Data = con, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        public int findLastCon()
+        {
+            int num = 0;
+            DbtenderEntities1 DB = new DbtenderEntities1();
 
+            List<ConToTender> result = DB.ConToTender.ToList();
+            num = result.Count + 1;
+
+            return num;
+
+        }
         public JsonResult save(List<ConToTender> ct)
         {
             bool status = false;
 
 
-            var isValidModel = TryUpdateModel(ct);
-            if (isValidModel)
-            {
-                using (DbtenderEntities1 DB = new DbtenderEntities1())
+            //var isValidModel = TryUpdateModel(ct);
+            //if (isValidModel)
+            //{
+                 using (DbtenderEntities1 DB = new DbtenderEntities1())
                 {
                     foreach (var item in ct)
                     {
-                        DB.ConToTender.Add(item);
+                    int last = findLastCon();
+                    item.numConToTender = last;
+
+                    DB.ConToTender.Add(item);
                     }
 
 
@@ -54,7 +67,7 @@ namespace tender.Controllers
 
                     status = true;
                 }
-            }
+            //}
             return new JsonResult { Data = new { status = status } };
         }
     }

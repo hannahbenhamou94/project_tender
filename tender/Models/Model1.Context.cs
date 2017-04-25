@@ -34,11 +34,11 @@ namespace tender.Models
         public virtual DbSet<TypeTender> TypeTender { get; set; }
         public virtual DbSet<SiteMenu> SiteMenu { get; set; }
         public virtual DbSet<ClientMenu> ClientMenu { get; set; }
-        public virtual DbSet<Tenders> Tenders { get; set; }
         public virtual DbSet<SuggestionDetail> SuggestionDetail { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Suggestions> Suggestions { get; set; }
         public virtual DbSet<ProducToTender> ProducToTender { get; set; }
+        public virtual DbSet<Tenders> Tenders { get; set; }
     
         public virtual ObjectResult<ss_Result> ss()
         {

@@ -17,7 +17,105 @@ namespace tender.Controllers
             return View();
         }
 
+        public int checkSuggestion(ConToTender con)
+        {
+            int numtender = Convert.ToInt32(con.numTender);
+            try
+            {
+                using (DbtenderEntities1 DB = new DbtenderEntities1())
+                {
+                    var tender = DB.Tenders.Find(Convert.ToInt32(numtender));
+                    if (tender== null)
+                        return -1;
 
+                }
+            }
+
+            catch (Exception) { }
+
+            List<ConToTender> cont = new List<ConToTender>();
+            using (DbtenderEntities1 DB = new DbtenderEntities1())
+            {
+                cont = DB.ConToTender.Where(a => a.numTender.Value.Equals(numtender)).OrderBy(a => a.numCon).ToList();
+            }
+            //  return Json(ProducToTender, JsonRequestBehavior.AllowGet);
+            if (cont != null)
+            {
+                try
+
+
+                {
+                    foreach (var item in cont)
+                    {
+
+                        using (DbtenderEntities1 DB = new DbtenderEntities1())
+                        {
+                            if (item.numCon == con.numCon)
+                                return 2;
+                        }
+                    }
+                    return 0;
+                }
+
+
+                catch (Exception) { }
+            }
+
+            return 0;
+
+
+        }
+
+        public ActionResult checkTenders()
+        {           
+  
+            List<Tenders> tenders = new List<Tenders>();
+            using (DbtenderEntities1 DB = new DbtenderEntities1())
+            {
+                tenders = DB.Tenders.Where(a => a.status.Contains("טרם")).OrderBy(a => a.numTender).ToList();
+            }
+            //  return Json(ProducToTender, JsonRequestBehavior.AllowGet);
+            if (tenders != null)
+            {
+                try
+
+
+                {
+                    foreach (var item in tenders)
+                    {
+
+                        using (DbtenderEntities1 DB = new DbtenderEntities1())
+                        {
+                            if (item.from <= DateTime.Now)
+                            {
+                                item.status = "פעיל";
+                                try
+                                {
+                                    DB.SaveChanges();
+                                }
+                                catch
+                                {
+
+                                }
+                            }
+                            else if (item.from == DateTime.Now)
+                            {
+                                if (item.hourStart >=DateTime.Now.TimeOfDay)
+                                {
+                                    item.status = "פעיל";
+                                    DB.SaveChanges();
+                                }
+                            }
+                        }
+                     }
+
+                }
+                catch (Exception) { }
+            }
+
+            return View();
+
+        }
         public ActionResult getSuggestion(int numTender)
         {
 
@@ -40,7 +138,41 @@ namespace tender.Controllers
             return Json(result.ToList(), JsonRequestBehavior.AllowGet);
 
         }
+        public int findTender()
+        {
 
+            int num = 0;
+            DbtenderEntities1 DB = new DbtenderEntities1();
+
+            List<Tenders> result = DB.Tenders.ToList();
+            num = result.Count + 1;
+
+            return num;
+        }
+        public ActionResult getLastTender()
+        {
+            int last = findTender();
+            DbtenderEntities1 DB1 = new DbtenderEntities1();
+
+            List<Tenders> results = DB1.Tenders.ToList();
+            int tender = results[last].numTender;
+            //if (Request.QueryString["id"] == null)
+            //    return View();
+            //int id = Convert.ToInt32(Request.QueryString["id"]);
+            DbtenderEntities1 DB = new DbtenderEntities1();
+
+            var result = from t in DB.Tenders
+                         join c in DB.Categories on t.codCategory equals c.codeCategory
+                          join co in DB.TypeTender on t.numType equals co.numType
+                         where t.numTender == tender
+                          select new { t.name, t.numEditor, c.nameCategory ,co.nameType,t.numTender,t.hourStart,t.typeAcquire};
+
+
+            //return View();
+
+            return Json(result.ToList(), JsonRequestBehavior.AllowGet);
+
+        }
         public JsonResult GetSiteMenus()
         {
             using (DbtenderEntities1 dc = new DbtenderEntities1())

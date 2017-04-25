@@ -11,7 +11,122 @@ var weight = [];
 var avg = 0;
 var numT;
 var flag = 0;
-var numCont = 1;
+var numCont=localStorage["user"];
+
+
+
+function checkTender() {
+    var u = "http://localhost:14962/Login/Login";
+    if (localStorage["user"] == undefined)
+        window.location.href =u;
+    ///cookie
+    if (!url) {
+        url = window.location.href;
+      //  alert(url);
+        url = url.substr(url.indexOf('=') + 1);
+    }
+    var conTo = {
+        numCon: numCont,
+        numTender: url,
+    }
+
+    //         alert(suggestionDetail);
+    $.ajax({
+        type: 'POST',
+        url: '/Suggestions/checkEnglish',
+        data: JSON.stringify(conTo),
+        contentType: 'application/json',
+        success: function (data) {
+            if (data == 0) {
+                document.getElementById("dd").innerHTML = "אין לך הרשאות למכרז אנא פנה לעורך המכרז";
+
+            }
+            else if (data == -1) {
+                document.getElementById("dd").innerHTML = "המכרז לא קיים";
+            }
+        },
+        error: function (error) {
+            console.log(error);
+
+        }
+    });
+
+
+
+}
+
+function time(x, time) {
+    var diff = (time - x) * 1000;
+    //   alert(diff+" diff");
+    setTimeout(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Suggestions/stopEnglishTender",
+                data: { 'numTender': url },
+                success: function () {
+                    // alert("Tender stoped!");
+                    $("#submit").Attr('disabled');
+                    document.getElementById("dd").innerHTML = "המכרז סגור";
+
+                    //render products to appropriate dropdown
+                    // renderDTender(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        }, diff);
+  //  timeInterval(time);
+}
+
+
+function timeInterval(time) {
+
+    var setTime = time * 1000;
+    //  alert(time + " time timer");
+    setInterval(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Suggestions/stopEnglishTender",
+            data: { 'numTender': url },
+            success: function () {
+                // alert("Tender stoped!");
+                $("#submit").Attr('disabled');
+                document.getElementById("dd").innerHTML = "המכרז סגור";
+
+                //render products to appropriate dropdown
+                // renderDTender(data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }, (time));
+}
+
+function stopTender() {
+
+    $.ajax({
+        type: "POST",
+        url: "/Suggestions/stopEnglishTender",
+        data: { 'numTender': url },
+        success: function () {
+           //  alert("Tender stoped!");
+            $("#submit").Attr('disabled');
+            $("#submit").Attr('hidden');
+
+            document.getElementById("dd").innerHTML = "המכרז סגור";
+            window.location.href = '/Client/Tenders';
+
+            //render products to appropriate dropdown
+            // renderDTender(data);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
 function LoadDTender() {
     if (!url) {
         url = window.location.href;
@@ -28,9 +143,11 @@ function LoadDTender() {
                 renderDTender($('#numProduct'), data);
             }
             else {
-                alert("close");
+               // alert("close");
                 flag = 1;
                 document.getElementById("dd").innerHTML = "המכרז סגור";
+                window.location.href = '/Client/Tenders';
+
 
             }            //render products to appropriate dropdown
         },
@@ -47,16 +164,84 @@ function renderDTender(element, data) {
         var row = table.insertRow(i + 1);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-
+ 
         cell1.innerHTML = v.numTender;
         cell2.innerHTML = v.name;
-        var NewDate = ToJavaScriptDate(v.till);
-        cell3.innerHTML = NewDate;
-        var NewTime = ToJavaScriptTime(v.hourFinish);
+ 
 
     }
     )
+}
+function LoadTime() {
+    if (!url) {
+        url = window.location.href;
+        url = url.substr(url.indexOf('=') + 1);
+
+    }
+ //  alert(url);
+    $.ajax({
+        type: "POST",
+        url: "/Suggestions/LoadDate",
+        dataType: 'json',
+        data: { 'numTender': url },
+        success: function (data) {
+            // alert("update");
+            updateTime(data);
+
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+function updateTime(data) {
+    //  alert("again");
+
+    $.each(data, function (i, v) {
+
+        date = v.dataSuggestion;
+        var my_date = ConvertJSONDateToDate(v.dataSuggestion);
+        //alert(JSON.stringify(v.time_update));
+        var j = JSON.stringify(v.time_update);
+        var json = $.parseJSON(j);
+        $(json).each(function (i, val) {
+            $.each(val, function (k, v) {
+                if (k == "TotalMilliseconds")
+                    time_update = v;
+            });
+        });
+        var diff = checkTime(my_date);
+        var count = diff + 1;
+        var count = Math.floor(diff / time_update);
+      //  alert(count + " count");
+        if (count > 0) {
+       //     alert("update time and the count  " + count);
+            stopTender();
+        }
+        var module = diff % time_update;
+     ///   alert(module + "  module");
+
+          time(module, time_update);
+        //   alert(time_update + " time ");
+
+
+
+
+    })
+
+}
+function ConvertJSONDateToDate(jsonDate) {
+    var dateSlice = jsonDate.slice(6, 24);
+    var milliseconds = parseInt(dateSlice);
+    var date = new Date(milliseconds);
+    return date;
+}
+
+function checkTime(s) {
+    var date = new Date();
+    var diff = Math.abs(date - s);
+    return diff;
+
 }
 
 
@@ -86,7 +271,7 @@ function LoadType(element) {
                     renderType(element);
                 }
                 else {
-                    alert("close");
+                //    alert("close");
                     document.getElementById("dd").innerHTML = "המכרז סגור";
                 }
 
@@ -101,7 +286,7 @@ function LoadType(element) {
 
         }
         else {
-            alert("close");
+        //    alert("close");
             document.getElementById("dd").innerHTML = "המכרז סגור";
         }
         //render catagory to the element
@@ -130,8 +315,13 @@ function LoadProduct() {
         url: "/Suggestions/getProduct",
         data: { 'numTender': url },
         success: function (data) {
-
+            console.log(data);
+            if (data == "")
+            {
+                renderFirstSuggestion();
+            }
             //render products to appropriate dropdown
+            else
             renderProduct($('#numProduct'), data);
         },
         error: function (error) {
@@ -140,6 +330,62 @@ function LoadProduct() {
     })
 }
 //});
+function renderFirstSuggestion()
+   
+{
+    if (!url) {
+        url = window.location.href;
+        url = url.substr(url.indexOf('=') + 1);
+    }
+    $.ajax({
+        type: "POST",
+        url: "/Suggestions/getProduct2",
+        data: { 'numTender': url },
+        success: function (data) {
+          
+                renderFirstSuggestion2(data);
+            
+                //render products to appropriate dropdown
+         
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function renderFirstSuggestion2( data) {
+    console.log(data);
+    $.each(data, function (i, v) {
+
+        var table = document.getElementById("tblsuggest");
+        var row = table.insertRow(i + 1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell5 = row.insertCell(3);
+        var cell6 = row.insertCell(4);
+        var cell4 = row.insertCell(5);
+        var cell7 = row.insertCell(6);
+        //=======var cell5 = row.insertCell(4);
+        cell1.innerHTML = v.numProduct;
+        cell2.innerHTML = v.NameProduct;
+        cell3.innerHTML = v.Amount;
+        cell5.innerHTML = v.PriceUpdate;
+        cell6.innerHTML = v.weight;
+        var t = ToJavaScriptDate(v.from);
+        cell4.innerHTML = t;
+        cell7.innerHTML = '<input id="price" type="number" name="prices"/>'
+        //========cell5.innerHTML = '<a href="/suggestion/suggestion?numtender='+v.numProduct+'><img src="~/Images/next.jpg" width="50" height="50" /></a>'
+    })
+    //    var $ele = $(element);
+    //$ele.empty();
+    //    $ele.append($('<option/>').val('0').text('Select'));
+    //   $.each(data, function (i, v) {
+    //        $ele.append($('<option/>').val(v.TenderDetailsID).text(v.NameProduct));
+    //
+}
+
 
 function renderProduct(element, data) {
     //render product
@@ -196,7 +442,7 @@ function loadNew() {
         data: { 'numTender': url },
         datatype: "json",
         success: function (data) {
-            alert("sucsses");
+         //   alert("sucsses");
             //render products to appropriate dropdown
         },
         error: function (error) {
@@ -230,12 +476,23 @@ function loadDetail() {
 
 
 function renderDetail(data) {
+
     $.each(data, function (i, v) {
-        product[i] = v.numproduct;
-        price[i] = v.priceToProduct + v.sizeRoomy;
-        weight[i] = v.weight;
+          if (v.priceToproduct!=undefined) {
+            product[i] = v.numproduct;
+            price[i] = v.priceToProduct + v.sizeRoomy;
+            weight[i] = v.weight;
+        }
+        
+        else {
+
+            product[i] = v.numproduct;
+            price[i] = v.PriceUpdate;
+            weight[i] = v.weight;
+        }
+    
+    
     });
-   
     flag = true;
  //   alert("i update the weight");
     check();
@@ -251,12 +508,14 @@ function check() {
             if (price[index] < input[index].value);
             if (price[index] > input[index].value) {
                 input[index].value = "";
-                alert("error ");
+              //  alert("error ");
                 flag = false;
                 document.getElementById("error").innerHTML = 'Please enter a Correct Price/s.';
+                isValid = false;
+
             }
         }
-        if (flag = true)
+        if (flag == true)
             isValid = true;
    //     alert("isvalid=true");
         findAverage();
@@ -320,7 +579,9 @@ function findAverage() {
   
     for (var index = 0; index < price.length; ++index) {
    //     avg =  (price[index] * weight[index]);
-      //  alert(index);
+        //  alert(index);
+    
+
         var p = price[index];
         var w = weight[index];
         var count = p * w;
@@ -331,12 +592,12 @@ function findAverage() {
         //alert(price[index] + "  price[index]");
     }
     var lenght=price.length;
-    var avg = Math.floor(avg / lenght);
+     avg = Math.floor(avg / lenght);
 
     //avg = ;
-    //alert(" avg final" + avg);
+  //  alert(" avg final" + avg);
 
-    $("#avg").val(avg)
+  //  $("#avg").val(avg)
     next();
 }
  
@@ -351,14 +612,14 @@ function next()
 {
     var d1 = Date.now();
     $("#dateNow").val(d1)
-    alert(d1 + " date boulette");
+  //  alert(d1 + " date boulette");
     if (isValid == true) {
       //  alert(" after  if ");
     var suggestion = {
                 numSuggestion: $("#LastSuggest").val(),
                 numTender: numT,
                 numCont:numCont,
-                priceToproduct: $("#avg").val(),
+                priceToproduct: avg,
                 dataSuggestion: new Date(),
 
             }
@@ -448,10 +709,11 @@ $(document).ready(function () {
         loadDetail();
         findLastDetail();
         findLastSuggest();
-       // setTimeout(hello, 10000);
-  
+      //  alert("hello");
     })//button 
 });
+checkTender();
+LoadTime();
 LoadDTender();
 
 LoadProduct();

@@ -1,10 +1,14 @@
-﻿ @using tender.Models
+﻿
+
+
+@model List<tender.Models.Tenders>
 
 @{
     ViewBag.Title = "winner";
 }
 
- <link href="~/css/table.css" rel="stylesheet" />
+<script src="~/Scripts/winner.js"></script>
+<link href="~/css/table.css" rel="stylesheet" />
 
 <div ng-app="MyApp">
     <div ng-controller="menuController">
@@ -32,9 +36,12 @@
 @section Scripts{
     <script src="~/Scripts/MyApp.js"></script>
 }
-<link href="~/css/table.css" rel="stylesheet" />
-
-<h2>All Winner</h2>
+<header style="top:0px;position:relative; text-align:right">
+    <img src="~/Images/search1.png" style="position: inherit;left: 4px;top: -1px; height: 29px;" />
+    <input style="padding:5px 10px; border:none" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Number.." title="Type in a name">
+    <link href="~/css/table.css" rel="stylesheet" />
+</header>
+<h2>All Winners</h2>
 <div>
 
     <table class="table table-responsive" id="table1">
@@ -43,15 +50,11 @@
             <th>Name Tender</th>
             <th>Type Tender</th>
             <th>Category</th>
-             <th>Name Winner</th>
+            <th>Name Winner</th>
             <th>Compagny of Winner</th>
-             <th>Price</th>
+            <th>Price</th>
             <th>From</th>
             <th>Till</th>
-
-
-
-
         </tr>
 
 
@@ -61,21 +64,21 @@
     </table>
 
 </div>
-<script src="~/Scripts/winner.js"></script>
 
 <link href="~/css/navMenu.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="~/Scripts/winner.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <script type="text/javascript" src="js/jquery.min.js"></script>
+<link type="text/css" href="css/bootstrap.min.css">
+<link type="text/css" href="css/bootstrap-timepicker.min.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
- <script src="~/Scripts/MyApp.js"></script>
-<script src="~/Scripts/jquery-2.2.4.min.js"></script>
- <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
- <link href="~/css/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+
+<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">   </script>
+<link href="~/css/jquery-ui.css" rel="stylesheet" />
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-  <link href="~/Content/bootstrap.css" rel="stylesheet" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
